@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "target": "es2016",                             /* Ustaw wersję JavaScript na ES2016. */
+    "module": "commonjs",                           /* Używaj CommonJS dla kompatybilności z Node.js. */
+    "esModuleInterop": true,                        /* Umożliwia importowanie pakietów CommonJS w stylu ES. */
+    "strict": true,                                 /* Włącz rygorystyczny tryb TypeScript. */
+    "skipLibCheck": true,                           /* Pomija sprawdzanie typów w plikach .d.ts. */
+    "forceConsistentCasingInFileNames": true,       /* Wymusza poprawność wielkości liter w nazwach plików. */
+    "resolveJsonModule": true,                      /* Umożliwia importowanie plików JSON. */
+    "lib": ["ES2016", "DOM"],                       /* Dodaj obsługę DOM, jeśli używasz funkcji przeglądarki. */
+    "baseUrl": "./",                                /* Podstawowy katalog dla importów. */
+    "paths": {                                      /* Opcjonalne aliasy dla importów. */
+      "@controllers/*": ["src/controllers/*"],
+      "@routes/*": ["src/routes/*"]
+    }
+  },
+  "include": ["src/**/*"],                          /* Upewnij się, że kompilowane są pliki w folderze `src`. */
+  "exclude": ["node_modules"]                       /* Wyklucz foldery, których nie chcesz kompilować. */
+}
