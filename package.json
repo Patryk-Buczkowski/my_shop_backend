@@ -2,11 +2,11 @@
   "name": "my_shop_backend",
   "version": "1.0.0",
   "description": "my_shop_backend",
-  "main": "index.js",
+  "main": "index.ts",
   "type": "module",
   "scripts": {
     "test": "test",
-    "start": "cross-env NODE_ENV=development nodemon ./server.js"
+    "start": "nodemon --exec npx tsx ./server.js"
   },
   "author": "Patryk Buczkowski",
   "license": "ISC",
@@ -24,14 +24,16 @@
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.9.4",
     "nodemailer": "^6.9.16",
-    "nodemon": "^3.1.9",
     "passport": "^0.7.0",
     "passport-jwt": "^4.0.1",
     "uuid": "^11.0.5"
   },
   "devDependencies": {
     "@types/express": "^5.0.0",
+    "@types/node": "^22.10.5",
+    "nodemon": "^3.1.9",
     "ts-node": "^10.9.2",
+    "tsx": "^4.19.2",
     "typescript": "^5.7.3"
   }
 }

@@ -1,4 +1,4 @@
-import { UserType } from "src/types/userType.js";
+import { UserType } from "../types/userType";
 import User from "../schemas/user";
 
 export const createUser = async (user: UserType) => {
@@ -11,9 +11,8 @@ export const createUser = async (user: UserType) => {
     await newUser.save();
     console.log("newUser", newUser);
     //tutaj mail
+    return newUser;
   } catch (error) {
     console.error(error);
   }
-
-  return newUser;
 };

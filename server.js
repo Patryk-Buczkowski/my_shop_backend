@@ -5,7 +5,7 @@ import app from "./app.js";
 dotenv.config();
 
 const PORT = process.env.PORT || 3000;
-const uriDb = process.env.COSMOS_DB_CONNECTION_STRING;
+const uriDb = process.env.COSMOS_DB_CONNECTION_STRING || "";
 const dbName = process.env.DB_NAME || "db-contacts";
 
 const startServer = async () => {

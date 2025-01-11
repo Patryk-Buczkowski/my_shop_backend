@@ -1,9 +1,9 @@
 import { Request, Response } from "express";
 import User from "../schemas/user";
 import { createUser } from "../services/usersService.js";
-import { UserType } from "src/types/userType";
+import { UserType } from "../types/userType";
 
-export const addUser = async (req: Request, res: Response): Promise<any> => {
+export const addUser = async (req: Request<{}, {}, UserType>, res: Response): Promise<any> => {
   const { name, age, email, password, country } = req.body;
 
   const newUser: UserType = {
