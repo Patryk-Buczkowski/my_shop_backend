@@ -1,5 +1,6 @@
 import mongoose, { SchemaTypes } from "mongoose";
-import { UserType } from "src/types/userType";
+import { UserType } from "../types/userType";
+import { boolean } from "joi";
 
 const schema = mongoose.Schema;
 
@@ -7,6 +8,7 @@ const user = new schema<UserType>(
   {
     name: {
       type: String,
+      minlength: [3, "Name must have min 3 letters"],
       required: [true, "Name is required"],
     },
     age: {
@@ -23,6 +25,7 @@ const user = new schema<UserType>(
     password: {
       type: String,
       required: [true, "Password is required"],
+      minlength: [6, "Password length min 6 figures"],
     },
     country: {
       type: String,
@@ -31,7 +34,11 @@ const user = new schema<UserType>(
     },
     isActive: {
       type: Boolean,
-      default: true,
+      default: false,
+    },
+    verificationToken: {
+      type: String,
+      required: [true, "Back-end do not add verificationToken"],
     },
     role: {
       type: String,
@@ -47,6 +54,10 @@ const user = new schema<UserType>(
         },
       },
     ],
+    verified: {
+      type: Boolean,
+      default: false,
+    },
   },
   { timestamps: true }
 );

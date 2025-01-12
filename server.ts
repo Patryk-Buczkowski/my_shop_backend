@@ -15,7 +15,10 @@ const startServer = async () => {
     });
     console.log(`Database connection successful`);
     app.listen(PORT, () => {
-      console.log(`Server running. Use our API on port: ${PORT}`);
+      console.log(`
+        Server running. Use our API on port: ${PORT}
+        http://localhost:3000/my_shop_api
+        `);
     });
   } catch (err) {
     console.error(`Server not running. Error message: ${err.message}`);

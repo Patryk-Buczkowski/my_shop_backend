@@ -1,5 +1,5 @@
 {
-  "exec": "ts-node server.js",
+  "exec": "npx tsx server.js",
   "watch": ["src"],
-  "ext": "ts"
+  "ext": "ts tsx js"
 }

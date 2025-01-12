@@ -1,15 +1,17 @@
 import mongoose from "mongoose";
-import { ProductType } from "src/types/productType";
+import { ProductType } from "../types/productType";
 
 const schema = mongoose.Schema;
 
 const product = new schema<ProductType>({
   title: {
     type: String,
+    minlength: [3, 'Title of product must have at least 3 figures'],
     require: [true, "title is required"],
   },
   price: {
     type: Number,
+    min: 0,
     require: [true, "Price is required"],
   },
   description: {
@@ -18,8 +20,8 @@ const product = new schema<ProductType>({
   },
   quantityAvailable: {
     type: Number,
-    default: 0,
-    min: [0, "quantityAvailable cannot be negative"],
+    default: 1,
+    min: [1, "quantityAvailable cannot be negative"],
   },
 });
 

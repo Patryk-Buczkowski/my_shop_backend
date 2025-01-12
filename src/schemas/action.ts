@@ -1,7 +1,5 @@
 import mongoose, { SchemaTypes } from "mongoose";
-import { ActionType } from "src/types/actionType";
-
-
+import { ActionType } from "../types/actionType";
 
 const createRandomDate = (start: string, end: string): string => {
   const startDate = new Date(start).getTime();
