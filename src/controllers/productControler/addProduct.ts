@@ -1,20 +1,14 @@
-import { Request, RequestHandler, Response } from "express";
+import { RequestHandler } from "express";
 import { createProduct } from "../../services/productService";
 import { ProductType } from "../../types/productType";
 import Product from "schemas/products";
 
-export const addProduct: RequestHandler<{}, any, ProductType> = async (
+export const addProduct: RequestHandler<{}, {}, ProductType> = async (
   req,
   res
 ) => {
   const { description, price, title, quantityAvailable = 1 } = req.body;
-
-  const productExist = Product.findOne({ title });
-
-  if (productExist) {
-    res.status(409).json("Product exist in data base");
-    return;
-  }
+  console.log(title);
 
   const newProduct = {
     description,
@@ -24,6 +18,14 @@ export const addProduct: RequestHandler<{}, any, ProductType> = async (
   };
 
   try {
+    const productExist = await Product.findOne({ title });
+
+    if (productExist) {
+      res.status(409).json("Product exist in data base");
+      console.log(productExist);
+      return;
+    }
+
     const addToDb = await createProduct(newProduct);
     if (addToDb) {
       res.status(201).json("Product added to data base");
