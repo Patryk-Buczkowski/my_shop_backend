@@ -27,10 +27,14 @@ export const createUser = async (user: UserType) => {
 export const getUserByToken = async (verificationToken: string) => {
   try {
     const user = await User.findOne({ verificationToken });
-    console.log("verificationToken", verificationToken);
-    if (user) {
-      console.log("user located");
+
+    if (!user) {
+      return null;
     }
+    user.verificationToken = "null";
+    user.verified = true;
+
+    await user.save();
 
     return user;
   } catch (error) {

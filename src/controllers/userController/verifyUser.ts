@@ -8,14 +8,11 @@ export const verifyUser: RequestHandler = async (req, res) => {
     const findedUser = await getUserByToken(verificationToken);
     if (!findedUser) {
       res.status(404).json("There is no such user");
+      // res.redirect()   when front ready
     }
 
-    findedUser.verificationToken = "null";
-    findedUser.verified = true;
-
-    await findedUser.save();
-
     res.status(200).json("User verified");
+    // res.redirect()   when front ready
   } catch (error) {
     console.error(error);
   }
