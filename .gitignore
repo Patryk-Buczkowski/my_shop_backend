@@ -6,3 +6,4 @@ p24register.env
 p24verify.env
 .idea
 .vscode
+.env
