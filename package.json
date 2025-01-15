@@ -2,11 +2,10 @@
   "name": "my_shop_backend",
   "version": "1.0.0",
   "description": "my_shop_backend",
-  "main": "index.ts",
   "type": "module",
   "scripts": {
-    "start": "cross-env NODE_ENV=production node app.js",
-    "dev": "cross-env NODE_ENV=development nodemon app.js"
+    "start": "cross-env NODE_ENV=production npx tsx server.ts",
+    "dev": "cross-env NODE_ENV=development nodemon"
   },
   "author": "Patryk Buczkowski",
   "license": "ISC",
