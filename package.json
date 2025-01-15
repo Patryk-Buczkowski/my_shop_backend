@@ -5,9 +5,9 @@
   "main": "index.ts",
   "type": "module",
   "scripts": {
-    "test": "test",
-    "start": "nodemon"
-  },
+  "start": "NODE_ENV=production node app.js",
+  "dev": "NODE_ENV=development nodemon app.js"
+},
   "author": "Patryk Buczkowski",
   "license": "ISC",
   "dependencies": {

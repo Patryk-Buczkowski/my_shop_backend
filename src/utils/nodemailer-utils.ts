@@ -11,6 +11,10 @@ if (!SMTP_USER || !SMTP_PASSWORD || !SMTP_HOST || !BACKEND_URL || !SMTP_PORT) {
 }
 
 export const sendVerificationEmail = async (user: UserType) => {
+  if (!user.email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(user.email)) {
+    throw new Error("Invalid or missing user email address");
+  }
+
   const transporter = nodemailer.createTransport({
     host: SMTP_HOST,
     port: parseInt(SMTP_PORT, 10),
@@ -20,10 +24,9 @@ export const sendVerificationEmail = async (user: UserType) => {
       pass: SMTP_PASSWORD,
     },
     tls: {
-      rejectUnauthorized: false,
+      rejectUnauthorized: process.env.NODE_ENV !== 'production' ? false : true,
     },
-    logger: true,
-    debug: true,
+    ...(process.env.NODE_ENV !== 'production' && { logger: true, debug: true }),
   });
 
   try {
