@@ -6,13 +6,13 @@ dotenv.config();
 
 const PORT = process.env.PORT || 3000;
 const uriDb = process.env.COSMOS_DB_CONNECTION_STRING || "";
-const dbName = process.env.DB_NAME || "db-contacts";
+// const dbName = process.env.DB_NAME || "db-contacts";
 
 const startServer = async () => {
   try {
-    await mongoose.connect(uriDb, {
-      dbName,
-    });
+    await mongoose.connect(uriDb,
+      // {dbName}
+    );
     console.log(`Database connection successful`);
     app.listen(PORT, () => {
       console.log(`
