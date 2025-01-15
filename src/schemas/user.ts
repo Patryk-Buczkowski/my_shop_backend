@@ -1,6 +1,5 @@
 import mongoose, { SchemaTypes } from "mongoose";
 import { UserType } from "../types/userType";
-import { boolean } from "joi";
 
 const schema = mongoose.Schema;
 

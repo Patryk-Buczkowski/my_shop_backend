@@ -3,7 +3,7 @@ import User from "../../schemas/user";
 import { createUser } from "../../services/usersService.js";
 import { UserType } from "../../types/userType";
 import bcrypt from "bcryptjs";
-import { v4 as uuid } from "uuid";
+import { nanoid } from "nanoid";
 
 export const addUser: RequestHandler<{}, any, UserType> = async (
   req,
@@ -14,7 +14,7 @@ export const addUser: RequestHandler<{}, any, UserType> = async (
   const start = performance.now();
   const hashedPassword = bcrypt.hashSync(password, 11);
   const end = performance.now();
-  const verificationToken = uuid();
+  const verificationToken = nanoid();
 
   console.log(`Hashing took: ${(end - start).toFixed(2)} ms`);
   console.log("hashedPassword s20", hashedPassword);
