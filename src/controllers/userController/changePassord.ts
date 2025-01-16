@@ -4,13 +4,18 @@ import User from "schemas/user";
 export const changePassord: RequestHandler = async (req, res) => {
   try {
     const { email, password } = req.body;
-    const user = await User.findOneAndUpdate({ email }, {password}, {new: true});
+    const user = await User.findOneAndUpdate(
+      { email },
+      { password },
+      { new: true }
+    );
 
     if (!user) {
       res.status(404).json("Can not find user");
     }
 
-    
-
-  } catch (error) {}
+    res.json("passwor changed");
+  } catch (error) {
+    console.error(error);
+  }
 };
