@@ -82,10 +82,10 @@ export const generateAccToken = (id: Types.ObjectId, role: string) => {
   return jwt.sign({ id, role }, process.env.SECRET, { expiresIn: "10d" });
 };
 
-export const createNewPassword = async (email: string, newPassword: string) => {
+export const createNewPassword = async (email: string, password: string) => {
   const user = await User.findOneAndUpdate(
     { email },
-    { password: newPassword },
+    { password },
     { new: true }
   );
 
