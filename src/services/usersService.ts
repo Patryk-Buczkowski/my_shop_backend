@@ -81,3 +81,17 @@ export const validateUser = async (email: string, password: string) => {
 export const generateAccToken = (id: Types.ObjectId, role: string) => {
   return jwt.sign({ id, role }, process.env.SECRET, { expiresIn: "10d" });
 };
+
+export const createNewPassword = async (email: string, newPassword: string) => {
+  const user = await User.findOneAndUpdate(
+    { email },
+    { password: newPassword },
+    { new: true }
+  );
+
+  if (!user) {
+    return null;
+  }
+
+  return user;
+};
