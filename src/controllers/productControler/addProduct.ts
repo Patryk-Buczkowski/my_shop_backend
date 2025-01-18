@@ -17,7 +17,6 @@ export const addProduct: RequestHandler<{}, {}, ProductType> = async (
     rate = 0,
     rateCount = 0,
   } = req.body;
-  console.log(title);
 
   const newProduct = {
     averageRate,

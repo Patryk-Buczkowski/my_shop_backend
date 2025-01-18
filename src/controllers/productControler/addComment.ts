@@ -17,12 +17,16 @@ export const addComment: RequestHandler<{}, {}, NewCommentType> = async (
     userId,
   };
 
-  const product = await addNewComment(newComment);
+  try {
+    const product = await addNewComment(newComment);
 
-  if (!product) {
-    res.status(404).json(`There is no product of id: ${productId}`);
-    return;
+  if (product) {
+    res.status(201).json("Comment added to DB");
+  } else {
+    res.status(400).json('check sent data')
+  }    
+  } catch (error) {
+    res.status(500).json({ message: "internal server error", error });
   }
 
-  res.json({ message: "comment added", newComment });
 };

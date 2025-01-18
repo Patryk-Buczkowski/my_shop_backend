@@ -1,5 +1,6 @@
 import { NewCommentType } from "types/newCommentType";
 import Product from "../schemas/productsSchema";
+import Comment from "../schemas/commentSchema";
 import { ProductType } from "../types/productType";
 
 export const createProduct = async (product: ProductType) => {
@@ -7,7 +8,6 @@ export const createProduct = async (product: ProductType) => {
 
   try {
     await newProduct.save();
-    console.log("newProduct", newProduct);
     return newProduct;
   } catch (error) {
     console.error("Can not create product", error);
@@ -20,15 +20,12 @@ export const addNewComment = async ({
   productId,
   userId,
 }: NewCommentType) => {
-  const product = await Product.findOneAndUpdate(
-    { _id: productId },
-    { comment, id, productId, userId },
-    { new: true }
-  );
+  const NewComment = new Comment({ comment, id, productId, userId });
 
-  if (!product) {
-    return null;
+  try {
+    await NewComment.save();
+    return NewComment;
+  } catch (error) {
+    console.error(error);
   }
-
-  return product;
 };
