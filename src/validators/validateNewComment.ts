@@ -20,15 +20,6 @@ const validateNewCommentSchema = Joi.object({
     "string.length": "'userId' must br exactly 24 characters length",
     "any.required": "'userId' is require field",
   }),
-
-  id: Joi.string()
-    .length(24)
-    .pattern(/^[A-Za-z0-9_-]+$/)
-    .messages({
-      "string.length": "NanoID must be exactly 21 characters long",
-      "string.pattern.base":
-        "'id' contains invalid characters. Allowed: A-Z, a-z, 0-9, _ and -",
-    }),
 });
 
 export const validateNewComment: RequestHandler<{}, {}, NewCommentType> = (
