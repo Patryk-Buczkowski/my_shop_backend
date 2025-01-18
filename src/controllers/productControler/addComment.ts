@@ -24,5 +24,5 @@ export const addComment: RequestHandler<{}, {}, NewCommentType> = async (
     return;
   }
 
-  res.json("comment added");
+  res.json({ message: "comment added", newComment });
 };
