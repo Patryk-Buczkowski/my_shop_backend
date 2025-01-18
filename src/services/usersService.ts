@@ -95,6 +95,8 @@ export const createNewPassword = async (email: string, password: string) => {
   if (!user) {
     return null;
   }
+  console.log('password', password);
+  console.log('hashedPassword', hashedPassword)
 
   return user;
 };
