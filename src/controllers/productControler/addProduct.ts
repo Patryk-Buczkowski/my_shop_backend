@@ -7,10 +7,23 @@ export const addProduct: RequestHandler<{}, {}, ProductType> = async (
   req,
   res
 ) => {
-  const { description, price, title, quantityAvailable = 1 } = req.body;
+  const {
+    description,
+    price,
+    title,
+    quantityAvailable = 1,
+    averageRate = 0,
+    comments = [],
+    rate = 0,
+    rateCount = 0,
+  } = req.body;
   console.log(title);
 
   const newProduct = {
+    averageRate,
+    rate,
+    rateCount,
+    comments,
     description,
     price,
     title,

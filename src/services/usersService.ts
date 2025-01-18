@@ -15,7 +15,6 @@ export const createUser = async (user: UserType) => {
 
   try {
     await newUser.save();
-    console.log("newUser", newUser);
     await sendVerificationEmail(newUser);
     console.log("mail sent");
     return newUser;

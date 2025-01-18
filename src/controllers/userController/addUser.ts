@@ -17,7 +17,7 @@ export const addUser: RequestHandler<{}, any, UserType> = async (
   const verificationToken = nanoid();
 
   console.log(`Hashing took: ${(end - start).toFixed(2)} ms`);
-  console.log("hashedPassword s20", hashedPassword);
+  console.log("hashedPassword s11", hashedPassword);
 
   const newUser: UserType = {
     verified: false,

@@ -51,7 +51,6 @@ passport.use(
   new Strategy(params, async (payload, done) => {
     try {
       const user = await User.findById(payload.id);
-      console.log("user", user);
       if (!user || !(user.role === "admin" || user.role === "moderator")) {
         return done(null, false, {
           message: "Not authorized role, moderator or admin required",
