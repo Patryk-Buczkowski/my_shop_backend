@@ -22,16 +22,17 @@ export const addNewComment = async ({
   userId,
 }: NewCommentType) => {
   const NewComment = new Comment({ comment, productId, userId });
-  const newId = nanoid(24)
 
   try {
     await NewComment.save();
-    const commentId = new mongoose.Types.ObjectId(newId);
     const updatedProduct = await Product.findByIdAndUpdate(
       productId,
-      { $push: { comments: commentId } },
+      { $push: { comments: NewComment._id } },
       { new: true }
     ).populate("comments");
+
+    console.log("updatedProduct", updatedProduct);
+    
     return NewComment;
   } catch (error) {
     console.error(error);

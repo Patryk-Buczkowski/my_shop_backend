@@ -22,10 +22,6 @@ const commentSchema = new schema<CommentType>(
       ref: "product",
       required: true,
     },
-
-    id: {
-      type: String,
-    },
   },
   { timestamps: true }
 );
