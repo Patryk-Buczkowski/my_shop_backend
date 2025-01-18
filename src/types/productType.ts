@@ -9,6 +9,7 @@ export type ProductType = {
   comments: CommentType[];
   averageRate: number;
   rateCount: number;
+  commentsList?: CommentType[];
 };
 
 export type CommentType = {

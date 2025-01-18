@@ -24,11 +24,15 @@ export const addNewComment = async ({
 
   try {
     await NewComment.save();
+
     const updatedProduct = await Product.findByIdAndUpdate(
       productId,
       { $push: { comments: NewComment._id } },
       { new: true }
-    ).populate("comments");
+    ).populate("commentsList");
+
+
+    console.log("list:", updatedProduct.commentsList);
 
     console.log("updatedProduct", updatedProduct);
 

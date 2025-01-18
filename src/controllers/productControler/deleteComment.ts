@@ -7,13 +7,8 @@ import { updateProductComment } from "services/productService";
 export const deleteComment: RequestHandler = async (req, res) => {
   const { commentId } = req.params;
 
-  if (!Types.ObjectId.isValid(commentId)) {
-     res.status(400).json({ message: "Invalid comment ID format" });
-     return;
-  }
-
   try {
-    const comment = await Comment.findById({ commentId });
+    const comment = await Comment.findById(commentId);
 
     if (!comment) {
       res.status(404).json("there is no such comment");
