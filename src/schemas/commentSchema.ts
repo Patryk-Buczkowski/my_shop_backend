@@ -17,7 +17,11 @@ const commentSchema = new schema<CommentType>(
       required: true,
     },
 
-    productId: { type: mongoose.Schema.Types.ObjectId, ref: "product" },
+    productId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "product",
+      required: true,
+    },
 
     id: {
       type: String,

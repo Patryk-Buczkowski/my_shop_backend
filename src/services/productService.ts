@@ -26,12 +26,11 @@ export const addNewComment = async ({
   try {
     await NewComment.save();
     const commentId = new mongoose.Types.ObjectId(id);
-    // await Product.findByIdAndUpdate(
-    //   productId,
-    //   { $push: { comments: commentId } }, // test
-    //   { new: true }
-    // );
-    await Product.findById(productId).populate("commentsList").exec();
+    const updatedProduct = await Product.findByIdAndUpdate(
+      productId,
+      { $push: { comments: commentId } },
+      { new: true }
+    ).populate("comments");
     return NewComment;
   } catch (error) {
     console.error(error);
