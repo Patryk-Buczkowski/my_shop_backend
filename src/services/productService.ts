@@ -31,7 +31,7 @@ export const addNewComment = async ({
     //   { $push: { comments: commentId } }, // test
     //   { new: true }
     // );
-    await Product.findById(productId).populate("comments").exec();
+    await Product.findById(productId).populate("commentsList").exec();
     return NewComment;
   } catch (error) {
     console.error(error);
