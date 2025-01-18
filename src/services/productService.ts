@@ -2,6 +2,7 @@ import { NewCommentType } from "types/newCommentType";
 import Product from "../schemas/productsSchema";
 import Comment from "../schemas/commentSchema";
 import { ProductType } from "../types/productType";
+import mongoose from "mongoose";
 
 export const createProduct = async (product: ProductType) => {
   const newProduct = new Product({ ...product });
@@ -24,9 +25,10 @@ export const addNewComment = async ({
 
   try {
     await NewComment.save();
-    const product = await Product.findByIdAndUpdate(
+    const commentId = new mongoose.Types.ObjectId(id);
+    await Product.findByIdAndUpdate(
       productId,
-      { $push: { comments: id } }, // test
+      { $push: { comments: commentId } }, // test
       { new: true }
     );
     return NewComment;
