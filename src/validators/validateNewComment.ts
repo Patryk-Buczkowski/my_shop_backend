@@ -27,7 +27,7 @@ const validateNewCommentSchema = Joi.object({
     .messages({
       "string.length": "NanoID must be exactly 21 characters long",
       "string.pattern.base":
-        "NanoID contains invalid characters. Allowed: A-Z, a-z, 0-9, _ and -",
+        "'id' contains invalid characters. Allowed: A-Z, a-z, 0-9, _ and -",
     }),
 });
 

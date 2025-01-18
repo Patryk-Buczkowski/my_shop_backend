@@ -11,7 +11,7 @@ const productRouter = express.Router();
 productRouter.post(
   "/addProduct",
   validateProducts,
-  passport.authenticate("roleModerator", { session: false }),
+  // passport.authenticate("roleModerator", { session: false }),
   addProduct
 );
 productRouter.delete("/remove/:_id", removeById);
