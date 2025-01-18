@@ -31,7 +31,7 @@ const productSchema = new schema<ProductType>(
       default: 0,
     },
     comments: [
-      { type: mongoose.Schema.Types.ObjectId, default: [], ref: "comment" },
+      { type: mongoose.Schema.Types.ObjectId, ref: "comment" },
     ],
     price: {
       type: Number,
