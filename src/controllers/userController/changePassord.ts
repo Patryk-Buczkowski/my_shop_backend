@@ -10,7 +10,9 @@ export const changePassord: RequestHandler = async (req, res) => {
       res.status(404).json("Can not find user");
     }
 
-    res.json("passwor changed");
+    console.log("password changed", user);
+
+    res.json("password changed");
   } catch (error) {
     console.error(error);
   }
