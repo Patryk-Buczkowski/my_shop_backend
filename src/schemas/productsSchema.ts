@@ -60,8 +60,8 @@ productSchema.methods.updateAverageRate = function (newRate: number) {
 
 productSchema.virtual("commentsList", {
   ref: "comment",
-  localField: "productId",
-  foreignField: "_id",
+  localField: "_id",
+  foreignField: "productId",
 });
 
 const Product = mongoose.model("product", productSchema);
