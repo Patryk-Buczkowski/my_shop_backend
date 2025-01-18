@@ -25,7 +25,6 @@ const commentSchema = new schema<CommentType>(
 
     id: {
       type: String,
-      required: [true, "id required"],
     },
   },
   { timestamps: true }
