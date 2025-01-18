@@ -3,6 +3,7 @@ import Product from "../schemas/productsSchema";
 import Comment from "../schemas/commentSchema";
 import { ProductType } from "../types/productType";
 import mongoose from "mongoose";
+import { nanoid } from "nanoid";
 
 export const createProduct = async (product: ProductType) => {
   const newProduct = new Product({ ...product });
@@ -17,15 +18,15 @@ export const createProduct = async (product: ProductType) => {
 
 export const addNewComment = async ({
   comment,
-  id,
   productId,
   userId,
 }: NewCommentType) => {
-  const NewComment = new Comment({ comment, id, productId, userId });
+  const NewComment = new Comment({ comment, productId, userId });
+  const newId = nanoid(24)
 
   try {
     await NewComment.save();
-    const commentId = new mongoose.Types.ObjectId(id);
+    const commentId = new mongoose.Types.ObjectId(newId);
     const updatedProduct = await Product.findByIdAndUpdate(
       productId,
       { $push: { comments: commentId } },
