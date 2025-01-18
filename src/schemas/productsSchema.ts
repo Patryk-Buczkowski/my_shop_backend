@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import { ProductType } from "../types/productType";
+import { populate } from "dotenv";
 
 const schema = mongoose.Schema;
 
@@ -30,7 +31,7 @@ const productSchema = new schema<ProductType>(
       default: 0,
     },
     comments: [
-      { type: mongoose.Schema.Types.ObjectId, default: [], ref: "product" },
+      { type: mongoose.Schema.Types.ObjectId, default: [], ref: "comment" },
     ],
     price: {
       type: Number,
