@@ -25,8 +25,8 @@ export const addNewComment = async ({
   try {
     await NewComment.save();
     const product = await Product.findByIdAndUpdate(
-      {productId},
-      { $push: { comments: id } }, // test
+      productId,
+      { $push: { comments: _id } }, // test
       { new: true }
     );
     return NewComment;
