@@ -12,7 +12,10 @@ export const deleteComment: RequestHandler = async (req, res) => {
       res.status(404).json("there is no such comment");
       return;
     }
-    const product = updateProductComment(comment);
+    const product = await Product.findByIdAndUpdate(comment.productId, {
+      $pull: { comments: comment._id },
+    });
+    //  updateProductComment(comment);
 
     if (!product) {
       res.status(404).json("There is no such product");
