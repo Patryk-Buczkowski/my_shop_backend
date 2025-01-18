@@ -83,9 +83,12 @@ export const generateAccToken = (id: Types.ObjectId, role: string) => {
 };
 
 export const createNewPassword = async (email: string, password: string) => {
+
+  const hashedPassword = bcrypt.hashSync(password, 11);
+
   const user = await User.findOneAndUpdate(
     { email },
-    { password },
+    { password: hashedPassword },
     { new: true }
   );
 
