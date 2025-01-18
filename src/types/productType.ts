@@ -13,7 +13,7 @@ export type ProductType = {
 
 export type CommentType = {
   comment: string;
-  id: string;
+  // id: string;
   userId: Types.ObjectId;
   productId: Types.ObjectId;
 };

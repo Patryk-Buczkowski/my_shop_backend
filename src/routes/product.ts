@@ -5,6 +5,7 @@ import { removeById } from "controllers/productControler/removeById";
 import passport from "passport";
 import { addComment } from "controllers/productControler/addComment";
 import { validateNewComment } from "validators/validateNewComment";
+import { deleteComment } from "controllers/productControler/deleteComment";
 
 const productRouter = express.Router();
 
@@ -21,5 +22,6 @@ productRouter.put(
   passport.authenticate("roleUser", { session: false }),
   addComment
 );
+productRouter.delete("/deleteComment/:commentId", deleteComment)
 
 export default productRouter;
