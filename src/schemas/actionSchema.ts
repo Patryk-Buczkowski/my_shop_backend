@@ -13,7 +13,7 @@ const createRandomDate = (start: string, end: string): string => {
 
 const schema = mongoose.Schema;
 
-const action = new schema<ActionType>({
+const actionSchema = new schema<ActionType>({
   weddingDate: {
     type: String,
     unique: true,
@@ -40,6 +40,6 @@ const action = new schema<ActionType>({
   },
 });
 
-const Action = mongoose.model("action", action);
+const Action = mongoose.model("action", actionSchema);
 
 export default Action;

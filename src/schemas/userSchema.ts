@@ -3,7 +3,7 @@ import { UserType } from "../types/userType";
 
 const schema = mongoose.Schema;
 
-const user = new schema<UserType>(
+const userSchema = new schema<UserType>(
   {
     name: {
       type: String,
@@ -61,6 +61,6 @@ const user = new schema<UserType>(
   { timestamps: true }
 );
 
-const User = mongoose.model("user", user);
+const User = mongoose.model("user", userSchema);
 
 export default User;

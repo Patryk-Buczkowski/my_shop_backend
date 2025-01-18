@@ -1,7 +1,7 @@
 import passport from "passport";
 import passportJWT from "passport-jwt";
 import dotenv from "dotenv";
-import User from "../schemas/user";
+import User from "../schemas/userSchema";
 
 dotenv.config();
 

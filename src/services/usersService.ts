@@ -1,5 +1,5 @@
 import { UserType } from "../types/userType";
-import User from "../schemas/user";
+import User from "../schemas/userSchema";
 import { sendVerificationEmail } from "utils/nodemailer-utils";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
@@ -83,7 +83,6 @@ export const generateAccToken = (id: Types.ObjectId, role: string) => {
 };
 
 export const createNewPassword = async (email: string, password: string) => {
-
   const hashedPassword = bcrypt.hashSync(password, 11);
 
   const user = await User.findOneAndUpdate(
@@ -95,8 +94,6 @@ export const createNewPassword = async (email: string, password: string) => {
   if (!user) {
     return null;
   }
-  console.log('password', password);
-  console.log('hashedPassword', hashedPassword)
 
   return user;
 };

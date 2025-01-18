@@ -1,5 +1,5 @@
 import { RequestHandler, Response } from "express";
-import User from "../../schemas/user";
+import User from "../../schemas/userSchema";
 import { createUser } from "../../services/usersService.js";
 import { UserType } from "../../types/userType";
 import bcrypt from "bcryptjs";

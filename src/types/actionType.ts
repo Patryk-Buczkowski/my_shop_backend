@@ -1,7 +1,7 @@
-import { ObjectId } from "mongoose";
+import { Types } from "mongoose";
 
 export type ActionType = {
   weddingDate: string;
   divorce: string;
-  userId: ObjectId;
+  userId: Types.ObjectId;
 };

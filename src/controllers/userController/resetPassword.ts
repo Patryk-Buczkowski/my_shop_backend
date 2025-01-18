@@ -1,5 +1,5 @@
 import { RequestHandler } from "express";
-import User from "schemas/user";
+import User from "schemas/userSchema";
 import bcrypt from "bcryptjs";
 import crypto from "crypto";
 import { createNewPassword } from "services/usersService";

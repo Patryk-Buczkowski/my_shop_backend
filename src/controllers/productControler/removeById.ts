@@ -1,5 +1,5 @@
 import { RequestHandler } from "express";
-import Product from "schemas/products";
+import Product from "schemas/productsSchema";
 
 export const removeById: RequestHandler = async (req, res) => {
   const { _id } = req.params;

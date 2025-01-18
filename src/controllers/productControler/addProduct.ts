@@ -1,7 +1,7 @@
 import { RequestHandler } from "express";
 import { createProduct } from "../../services/productService";
 import { ProductType } from "../../types/productType";
-import Product from "schemas/products";
+import Product from "schemas/productsSchema";
 
 export const addProduct: RequestHandler<{}, {}, ProductType> = async (
   req,
