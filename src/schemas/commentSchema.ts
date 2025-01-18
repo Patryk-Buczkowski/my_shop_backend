@@ -1,3 +1,4 @@
+import { required } from "joi";
 import mongoose from "mongoose";
 import { CommentType } from "types/productType";
 
@@ -19,6 +20,10 @@ const commentSchema = new schema<CommentType>({
         type: mongoose.Schema.Types.ObjectId,
         ref: "product",
         required: true,
+    },
+    id: {
+      type: String,
+      required: [true, 'id required'],
     }
   },
   {timestamps: true});
