@@ -1,4 +1,5 @@
 import { RequestHandler } from "express";
+import { Types } from "mongoose";
 import Comment from "schemas/commentSchema";
 import Product from "schemas/productsSchema";
 import { updateProductComment } from "services/productService";
@@ -6,8 +7,14 @@ import { updateProductComment } from "services/productService";
 export const deleteComment: RequestHandler = async (req, res) => {
   const { commentId } = req.params;
 
+  if (!Types.ObjectId.isValid(commentId)) {
+     res.status(400).json({ message: "Invalid comment ID format" });
+     return;
+  }
+
   try {
     const comment = await Comment.findById({ commentId });
+
     if (!comment) {
       res.status(404).json("there is no such comment");
       return;
