@@ -12,16 +12,24 @@ const productRouter = express.Router();
 productRouter.post(
   "/addProduct",
   validateProducts,
-  // passport.authenticate("roleModerator", { session: false }),
+  passport.authenticate("roleModerator", { session: false }),
   addProduct
 );
 productRouter.delete("/remove/:_id", removeById);
+
 productRouter.put(
   "/addProductComment",
   validateNewComment,
   passport.authenticate("roleUser", { session: false }),
   addComment
 );
-productRouter.delete("/deleteComment/:commentId", deleteComment)
+
+productRouter.delete(
+  "/deleteComment/:commentId",
+  passport.authenticate("roleModerator", { session: false }),
+  deleteComment
+);
+
+
 
 export default productRouter;

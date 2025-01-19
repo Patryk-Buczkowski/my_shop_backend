@@ -1,6 +1,6 @@
 import { UserType } from "../types/userType";
 import User from "../schemas/userSchema";
-import { sendVerificationEmail } from "utils/nodemailer-utils";
+import { sendNewPassword, sendVerificationEmail } from "utils/nodemailer-utils";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
@@ -95,4 +95,23 @@ export const createNewPassword = async (email: string, password: string) => {
   }
 
   return user;
+};
+
+export const checkId = async (
+  userId: Types.ObjectId,
+  jwtId: Types.ObjectId,
+  email: string,
+  user: UserType
+) => {
+  if (userId === jwtId) {
+    const newPass = crypto.randomUUID();
+    const hashedNewPass = bcrypt.hashSync(newPass, 11);
+
+    await createNewPassword(email, hashedNewPass);
+    await sendNewPassword(user, newPass);
+
+    return true;
+  }
+
+  return false;
 };

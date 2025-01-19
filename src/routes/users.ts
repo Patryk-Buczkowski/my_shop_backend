@@ -14,7 +14,11 @@ userRouter.post("/login", loginUser);
 userRouter.post("/addUser", validateUser, addUser);
 userRouter.get("/verifyUser/:verificationToken", verifyUser);
 userRouter.post("/verifyUser", reVerify);
-userRouter.post("/resetPssword", resetPassword);
+userRouter.post(
+  "/resetPssword",
+  passport.authenticate("roleUser", { session: false }),
+  resetPassword
+);
 userRouter.post(
   "/changePassword",
   passport.authenticate("roleUser", { session: false }),
