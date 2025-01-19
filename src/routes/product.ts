@@ -6,6 +6,7 @@ import passport from "passport";
 import { addComment } from "controllers/productControler/addComment";
 import { validateNewComment } from "validators/validateNewComment";
 import { deleteComment } from "controllers/productControler/deleteComment";
+import { addRate } from "controllers/productControler/addRate";
 
 const productRouter = express.Router();
 
@@ -30,6 +31,10 @@ productRouter.delete(
   deleteComment
 );
 
-
+productRouter.post(
+  "/addRate/:productId",
+  passport.authenticate("roleUser", { session: false }),
+  addRate
+);
 
 export default productRouter;

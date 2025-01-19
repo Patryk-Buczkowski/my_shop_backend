@@ -12,14 +12,14 @@ const productSchema = new schema<ProductType>(
       require: [true, "title is required"],
     },
     rate: {
-      type: Number,
+      type: [Number],
       min: [0, "Rate min 0"],
       max: [6, "Rate max 6"],
-      default: 0,
+      default: [0],
       required: [true, "Rate is required"],
       validate: {
-        validator: Number.isFinite,
-        message: "Rate must be a valid number",
+        validator: (value: number[]) => value.every((num) => num >= 0 && num <= 6),
+        message: "Each rate must be a number between 0 and 6",
       },
     },
     averageRate: {

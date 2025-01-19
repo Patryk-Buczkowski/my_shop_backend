@@ -8,17 +8,19 @@ export const addProduct: RequestHandler<{}, {}, ProductType> = async (
   res
 ) => {
   const {
+    updateAverageRate,
     description,
     price,
     title,
     quantityAvailable = 1,
     averageRate = 0,
     comments = [],
-    rate = 0,
+    rate = [],
     rateCount = 0,
   } = req.body;
 
   const newProduct = {
+    updateAverageRate,
     averageRate,
     rate,
     rateCount,

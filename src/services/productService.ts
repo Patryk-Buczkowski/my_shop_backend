@@ -31,7 +31,6 @@ export const addNewComment = async ({
       { new: true }
     ).populate("commentsList");
 
-
     console.log("list:", updatedProduct.commentsList);
 
     console.log("updatedProduct", updatedProduct);
@@ -58,4 +57,27 @@ export const updateProductComment = async (
   } else {
     return product;
   }
+};
+
+export const updateRating = async (
+  productId: Types.ObjectId,
+  newRate: number
+) => {
+  try {
+    const product = await Product.findByIdAndUpdate(
+      productId,
+      { $push: { rate: newRate } },
+      { new: true }
+    );
+
+    const updatedProduct = await Product.findById(productId);
+
+    await updatedProduct.updateAverageRate(newRate);
+
+    if (product) {
+      return product;
+    } else {
+      return null;
+    }
+  } catch (error) {}
 };
