@@ -1,13 +1,6 @@
 import { RequestHandler } from "express";
 import User from "schemas/userSchema";
-import bcrypt from "bcryptjs";
-import crypto from "crypto";
-import {
-  checkId,
-  createNewPassword,
-  getUserByToken,
-} from "services/usersService";
-import { sendNewPassword } from "utils/nodemailer-utils";
+import { checkId } from "services/usersService";
 import dotenv from "dotenv";
 import jwt from "jsonwebtoken";
 import { Types } from "mongoose";

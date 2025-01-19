@@ -103,7 +103,7 @@ export const checkId = async (
   email: string,
   user: UserType
 ) => {
-  if (userId === jwtId) {
+  if (userId == jwtId) {
     const newPass = crypto.randomUUID();
     const hashedNewPass = bcrypt.hashSync(newPass, 11);
 
