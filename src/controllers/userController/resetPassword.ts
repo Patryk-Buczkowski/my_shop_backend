@@ -1,9 +1,7 @@
 import { RequestHandler } from "express";
 import User from "schemas/userSchema";
-import { checkId } from "services/usersService";
+import { resetPassAndSend } from "services/usersService";
 import dotenv from "dotenv";
-import jwt from "jsonwebtoken";
-import { Types } from "mongoose";
 dotenv.config();
 
 export const resetPassword: RequestHandler<{}, {}, { email: string }> = async (
@@ -12,19 +10,14 @@ export const resetPassword: RequestHandler<{}, {}, { email: string }> = async (
 ) => {
   try {
     const { email } = req.body;
-    const secret = process.env.SECRET;
-    const token = req.headers.authorization?.split(" ")[1];
-    const jwtPayload = jwt.verify(token, secret) as {
-      id: Types.ObjectId;
-      email: string;
-    };
+    
     const user = await User.findOne({ email });
 
     if (!user) {
       res.status(404).json("incorrect e-mail");
     }
 
-    const correct = await checkId(user._id, jwtPayload.id, email, user);
+    const correct = await resetPassAndSend(email, user);
 
     if (correct) {
       res.status(201).json("password changed");

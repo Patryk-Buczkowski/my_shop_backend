@@ -68,13 +68,13 @@ export const validateUser = async (email: string, password: string) => {
     throw new Error("User is not verified");
   }
 
-  const isMatch = bcrypt.compare(password, user.password);
+  const isMatch = await bcrypt.compare(password, user.password);
 
   if (!isMatch) {
     throw new Error("User password do not match");
+  } else {
+    return user;
   }
-
-  return user;
 };
 
 export const generateAccToken = (id: Types.ObjectId, role: string) => {
@@ -97,21 +97,15 @@ export const createNewPassword = async (email: string, password: string) => {
   return user;
 };
 
-export const checkId = async (
-  userId: Types.ObjectId,
-  jwtId: Types.ObjectId,
-  email: string,
-  user: UserType
-) => {
-  if (userId == jwtId) {
+export const resetPassAndSend = async (email: string, user: UserType) => {
+  try {
     const newPass = crypto.randomUUID();
-    const hashedNewPass = bcrypt.hashSync(newPass, 11);
 
-    await createNewPassword(email, hashedNewPass);
+    await createNewPassword(email, newPass);
     await sendNewPassword(user, newPass);
-
     return true;
+  } catch (error) {
+    console.error(error);
+    return false;
   }
-
-  return false;
 };

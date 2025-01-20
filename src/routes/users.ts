@@ -10,13 +10,15 @@ import { changePassord } from "controllers/userController/changePassord";
 
 const userRouter = express.Router();
 
-userRouter.post("/login", loginUser);
+userRouter.post(
+  "/login",
+  loginUser
+);
 userRouter.post("/addUser", validateUser, addUser);
 userRouter.get("/verifyUser/:verificationToken", verifyUser);
 userRouter.post("/verifyUser", reVerify);
 userRouter.post(
   "/resetPssword",
-  passport.authenticate("roleUser", { session: false }),
   resetPassword
 );
 userRouter.post(
