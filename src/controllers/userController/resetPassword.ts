@@ -17,6 +17,8 @@ export const resetPassword: RequestHandler<{}, {}, { email: string }> = async (
       res.status(404).json("incorrect e-mail");
     }
 
+    // potwierdzić reset hasła w  mailu
+
     const correct = await resetPassAndSend(email, user);
 
     if (correct) {
