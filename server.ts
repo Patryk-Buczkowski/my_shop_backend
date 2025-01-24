@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import app from "./app.ts";
+import User from "./src/schemas/userSchema.ts";
 
 dotenv.config();
 
@@ -14,6 +15,8 @@ const startServer = async () => {
       // {dbName}
     );
     console.log(`Database connection successful`);
+    await User.createIndexes();
+    console.log("Indexes created for User model");
     app.listen(PORT, () => {
       console.log(`
         Server running port: ${PORT}

@@ -57,6 +57,17 @@ const userSchema = new schema<UserType>(
       type: Boolean,
       default: false,
     },
+
+    tokenExpiration: {
+      type: Date,
+      default: () => Date.now() + 24 * 60 * 60 * 1000,
+    },
+
+    tokenCreatedAt: {
+      type: Date,
+      default: Date.now,
+      expires: 86400,
+    },
   },
   { timestamps: true }
 );

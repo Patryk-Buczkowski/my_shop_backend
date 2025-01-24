@@ -51,7 +51,7 @@ const validateUserSchema = Joi.object({
     }),
 });
 
-export const validateUser: RequestHandler<{}, any, UserType> = (
+export const validateUser: RequestHandler<{}, {}, UserType> = (
   req,
   res,
   next

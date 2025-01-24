@@ -28,9 +28,12 @@ export const getUserByToken = async (verificationToken: string) => {
     const user = await User.findOne({ verificationToken });
 
     if (!user) {
-      return null;
+       return null;
+
     }
     user.verificationToken = "null";
+    // user.tokenCreatedAt = null;
+    // user.tokenExpiration = null;
     user.verified = true;
 
     await user.save();
@@ -97,11 +100,11 @@ export const createNewPassword = async (email: string, password: string) => {
   return user;
 };
 
-export const resetPassAndSend = async (email: string, user: UserType) => {
+export const resetPassAndSend = async (user: UserType) => {
   try {
     const newPass = crypto.randomUUID();
 
-    await createNewPassword(email, newPass);
+    await createNewPassword(user.email, newPass);
     await sendNewPassword(user, newPass);
     return true;
   } catch (error) {

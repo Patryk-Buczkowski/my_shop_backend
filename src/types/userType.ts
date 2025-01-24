@@ -13,4 +13,6 @@ export type UserType = {
   verificationToken: string;
   productsBought: ProductBought[];
   verified: boolean;
+  tokenCreatedAt?: Date;
+  tokenExpiration?: Date;
 };
