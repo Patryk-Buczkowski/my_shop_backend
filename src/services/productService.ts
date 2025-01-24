@@ -15,6 +15,22 @@ export const createProduct = async (product: ProductType) => {
   }
 };
 
+export const updateProductData = async (updates: Partial<ProductType> , productId: number) => {
+  try {
+    const updatedProduct = await Product.findByIdAndUpdate(productId, updates, {
+      new: true,
+    });
+
+    if (!updatedProduct) {
+      return null;
+    }
+
+    return updatedProduct;
+  } catch (error) {
+    console.error(error)
+  }
+};
+
 export const addNewComment = async ({
   comment,
   productId,

@@ -7,6 +7,10 @@ import { addComment } from "controllers/productControler/addComment";
 import { validateNewComment } from "validators/validateNewComment";
 import { deleteComment } from "controllers/productControler/deleteComment";
 import { addRate } from "controllers/productControler/addRate";
+import { changeQuantity } from "controllers/productControler/changeQuantity";
+import { getDetails } from "controllers/productControler/getDetails";
+import { filterProduct } from "controllers/productControler/filterProduct";
+import { updateProduct } from "controllers/productControler/updateProduct";
 
 const productRouter = express.Router();
 
@@ -35,6 +39,23 @@ productRouter.post(
   "/addRate/:productId",
   passport.authenticate("roleUser", { session: false }),
   addRate
+);
+
+productRouter.put(
+  "/changeProductQty/:productId",
+  passport.authenticate("roleModerator", { session: false }),
+  changeQuantity
+);
+
+productRouter.get("/product/:productId", getDetails);
+
+productRouter.get("/filterProduct", filterProduct);
+
+productRouter.put(
+  "/updateProduct/:productId",
+  passport.authenticate("roleModerator", { session: false }),
+  // validateProducts,
+  updateProduct
 );
 
 export default productRouter;

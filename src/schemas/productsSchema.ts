@@ -1,6 +1,5 @@
 import mongoose from "mongoose";
-import { ProductType } from "../types/productType";
-import { populate } from "dotenv";
+import { CategoryType, ProductType } from "../types/productType";
 
 const schema = mongoose.Schema;
 
@@ -18,9 +17,43 @@ const productSchema = new schema<ProductType>(
       default: [0],
       required: [true, "Rate is required"],
       validate: {
-        validator: (value: number[]) => value.every((num) => num >= 0 && num <= 6),
+        validator: (value: number[]) =>
+          value.every((num) => num >= 0 && num <= 6),
         message: "Each rate must be a number between 0 and 6",
       },
+    },
+    category: {
+      type: String,
+      required: true,
+      trim: true,
+      lowercase: true,
+      enum: [
+        "baby products",
+        "stationery",
+        "baked goods",
+        "beverages",
+        "bio food",
+        "confectionery",
+        "cosmetics",
+        "dairy products",
+        "drinks",
+        "electronics",
+        "food",
+        "frozen food",
+        "fruits and vegetables",
+        "health supplements",
+        "home decor",
+        "household chemicals",
+        "household goods",
+        "meat",
+        "other",
+        "personal hygiene",
+        "pet supplies",
+        "seafood",
+        "snacks",
+        "stationery",
+      ] as CategoryType[],
+      default: "other",
     },
     averageRate: {
       type: Number,
@@ -30,9 +63,7 @@ const productSchema = new schema<ProductType>(
       type: Number,
       default: 0,
     },
-    comments: [
-      { type: mongoose.Schema.Types.ObjectId, ref: "comment" }
-    ],
+    comments: [{ type: mongoose.Schema.Types.ObjectId, ref: "comment" }],
     price: {
       type: Number,
       min: 0,

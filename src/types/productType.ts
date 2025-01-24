@@ -9,9 +9,36 @@ export type ProductType = {
   comments: CommentType[];
   averageRate: number;
   rateCount: number;
-  commentsList?: CommentType[];
+  category?: CategoryType;
+  commentsList: CommentType[];
   updateAverageRate: (newRate: number) => Promise<void>;
 };
+
+export type CategoryType = 
+  | 'food'
+  | 'drinks'
+  | 'meat'
+  | 'dairy products'
+  | 'household goods'
+  | 'household chemicals'
+  | 'cosmetics'
+  | 'bio food'
+  | 'snacks'
+  | 'confectionery'
+  | 'seafood'
+  | 'frozen food'
+  | 'baked goods'
+  | 'fruits and vegetables'
+  | 'beverages'
+  | 'pet supplies'
+  | 'baby products'
+  | 'health supplements'
+  | 'electronics'
+  | 'personal hygiene'
+  | 'stationery'
+  | 'home decor'
+  | 'other'
+
 
 export type CommentType = {
   comment: string;
