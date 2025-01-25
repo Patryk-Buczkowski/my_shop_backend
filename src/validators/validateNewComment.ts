@@ -12,7 +12,7 @@ const validateNewCommentSchema = Joi.object({
   productId: Joi.string().length(24).required().messages({
     "string.base": "'productId' should be type text",
     "string.length": "'productId' must br exactly 24 characters length",
-    "any.required": "'prouctId' is require field",
+    "any.required": "'productId' is require field",
   }),
 
   userId: Joi.string().length(24).required().messages({

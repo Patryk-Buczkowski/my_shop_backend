@@ -4,6 +4,7 @@ import Comments from "./src/schemas/commentSchema";
 import dotenv from "dotenv";
 import { CommentType } from "./src/types/productType";
 dotenv.config();
+
 const { COSMOS_DB_CONNECTION_STRING = "" } = process.env;
 
 mongoose.connect(COSMOS_DB_CONNECTION_STRING);

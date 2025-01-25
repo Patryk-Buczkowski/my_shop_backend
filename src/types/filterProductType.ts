@@ -8,7 +8,7 @@ type SortBy =
 
 export type FilterProductType = {
   category?: string;
-  minPrice?: number;
-  maxPrice?: number;
-  sortBy?: SortBy;
+  minPrice?: string;
+  maxPrice?: string;
+  sortBy?: SortBy | Array<SortBy>;
 };

@@ -4,6 +4,8 @@ import Comment from "../schemas/commentSchema";
 import { CommentType, ProductType } from "../types/productType";
 import { Types } from "mongoose";
 
+const validSortFields = ["title", "price", "averageRate"];
+
 export const createProduct = async (product: ProductType) => {
   const newProduct = new Product({ ...product });
 
@@ -15,7 +17,40 @@ export const createProduct = async (product: ProductType) => {
   }
 };
 
-export const updateProductData = async (updates: Partial<ProductType> , productId: number) => {
+const splitElement = (elem: string) => {
+  const [field, order] = elem.split(":");
+  let sortOption = {};
+
+  console.log("field", field);
+  console.log("order", order);
+  if (!validSortFields.includes(field)) {
+    return null;
+  }
+  return { [field]: order === "desc" ? -1 : 1 };
+};
+
+export const createSortOption = (sortBy: string | Array<string>) => {
+  if (typeof sortBy === "string") {
+    return splitElement(sortBy);
+  } else if (Array.isArray(sortBy)) {
+    const sortOptions = sortBy
+      .map(splitElement)
+      .filter((option) => option !== null);
+
+    if (sortOptions.length !== sortBy.length) {
+      return null;
+    }
+
+    return sortBy.reduce((acc, elem) => {
+      return Object.assign(acc, splitElement(elem));
+    }, {});
+  }
+};
+
+export const updateProductData = async (
+  updates: Partial<ProductType>,
+  productId: number
+) => {
   try {
     const updatedProduct = await Product.findByIdAndUpdate(productId, updates, {
       new: true,
@@ -27,7 +62,7 @@ export const updateProductData = async (updates: Partial<ProductType> , productI
 
     return updatedProduct;
   } catch (error) {
-    console.error(error)
+    console.error(error);
   }
 };
 

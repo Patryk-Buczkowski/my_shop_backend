@@ -10,7 +10,7 @@ const validateProductSchema= Joi.object({
   }),
 
   price: Joi.number().min(0).required().messages({
-    "number.base": "'price' must br type of number",
+    "number.base": "'price' must be type of number",
     "number.min": "'price' minimal is 0",
     "any.required": "'price' is required field",
   }),
