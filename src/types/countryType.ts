@@ -5,7 +5,6 @@ export const countryObj = {
   UK: "UK",
   FR: "FR",
 };
-
 export type CountryType = keyof typeof countryObj;
 
 

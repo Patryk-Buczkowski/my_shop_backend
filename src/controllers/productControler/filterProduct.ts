@@ -21,8 +21,6 @@ export const filterProduct: RequestHandler<
 
     const sortOption = createSortOption(sortBy);
 
-    console.log('sortOption', sortOption)
-
     if (sortOption === null) { 
       res.status(400).json('Invalid sort option');
       return;

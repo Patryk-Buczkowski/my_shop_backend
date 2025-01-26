@@ -16,9 +16,7 @@ export const addRate: RequestHandler<
         return;
       }
 
-    const product = await updateRating(productId, rate);    
-
-    console.log('1', product)
+    const product = await updateRating(productId, rate);
 
     if (product) {
       res.status(200).json("Rate added success");

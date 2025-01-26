@@ -1,8 +1,8 @@
 import mongoose from "mongoose";
-import User from "./src/schemas/userSchema";
-import Products from "./src/schemas/productsSchema";
+import User from "../src/schemas/userSchema";
+import Products from "../src/schemas/productsSchema";
 import dotenv from "dotenv";
-import { ProductBought } from "./src/types/productBought";
+import { ProductBought } from "../src/types/productBought";
 dotenv.config();
 
 const { COSMOS_DB_CONNECTION_STRING = "" } = process.env;
@@ -24,14 +24,14 @@ const addHistoryToUsers = async () => {
       const history: ProductBought[] = [];
       for (let i = 0; i < 10; i++) {
         const randomIndex = Math.floor(Math.random() * products.length);
-        const randomAmount = Math.floor((Math.random() * 101) + 1);
+        const randomAmount = Math.floor(Math.random() * 101 + 1);
 
         history.push({
           amount: randomAmount,
           product: products[randomIndex]._id,
         });
       }
-      user.productsBought.push(...history)
+      user.productsBought.push(...history);
       await user.save();
     }
   } catch (error) {
