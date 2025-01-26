@@ -11,6 +11,7 @@ import { changeQuantity } from "controllers/productControler/changeQuantity";
 import { getDetails } from "controllers/productControler/getDetails";
 import { filterProduct } from "controllers/productControler/filterProduct";
 import { updateProduct } from "controllers/productControler/updateProduct";
+import { getUserHistory } from "controllers/productControler/getUserHistory";
 
 const productRouter = express.Router();
 
@@ -58,10 +59,10 @@ productRouter.put(
   updateProduct,
 );
 
-// productRouter.get(
-//   "/userHistory/:userId",
-//   passport.authenticate("roleUser"),
-//   getUserHistory
-// );
+productRouter.get(
+  "/userHistory/:userId",
+  passport.authenticate("roleUser", { session: false }),
+  getUserHistory,
+);
 
 export default productRouter;
