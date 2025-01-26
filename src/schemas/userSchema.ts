@@ -72,6 +72,13 @@ const userSchema = new schema<UserType>(
   { timestamps: true }
 );
 
+userSchema.virtual('productsBoughtList', {
+  ref: 'product',
+  localField: "productsBought.product",
+  foreignField: "_id",
+
+})
+
 const User = mongoose.model("user", userSchema);
 
 export default User;

@@ -58,4 +58,10 @@ productRouter.put(
   updateProduct
 );
 
+// productRouter.get(
+//   "/userHistory/:userId",
+//   passport.authenticate("roleUser"),
+//   getUserHistory
+// );
+
 export default productRouter;

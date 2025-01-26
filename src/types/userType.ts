@@ -1,5 +1,6 @@
 import { CountryType } from "./countryType";
 import { ProductBought } from "./productBought";
+import { ProductType } from "./productType";
 import { RoleType } from "./roleType";
 
 export type UserType = {
@@ -12,6 +13,7 @@ export type UserType = {
   role: RoleType;
   verificationToken: string;
   productsBought: ProductBought[];
+  productsBoughtList: ProductType[];
   verified: boolean;
   tokenCreatedAt?: Date;
   tokenExpiration?: Date;
