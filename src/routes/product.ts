@@ -18,7 +18,7 @@ productRouter.post(
   "/addProduct",
   validateProducts,
   passport.authenticate("roleModerator", { session: false }),
-  addProduct
+  addProduct,
 );
 productRouter.delete("/remove/:_id", removeById);
 
@@ -26,25 +26,25 @@ productRouter.put(
   "/addProductComment",
   validateNewComment,
   passport.authenticate("roleUser", { session: false }),
-  addComment
+  addComment,
 );
 
 productRouter.delete(
   "/deleteComment/:commentId",
   passport.authenticate("roleModerator", { session: false }),
-  deleteComment
+  deleteComment,
 );
 
 productRouter.post(
   "/addRate/:productId",
   passport.authenticate("roleUser", { session: false }),
-  addRate
+  addRate,
 );
 
 productRouter.put(
   "/changeProductQty/:productId",
   passport.authenticate("roleModerator", { session: false }),
-  changeQuantity
+  changeQuantity,
 );
 
 productRouter.get("/product/:productId", getDetails);
@@ -55,7 +55,7 @@ productRouter.put(
   "/updateProduct/:productId",
   passport.authenticate("roleModerator", { session: false }),
   // validateProducts,
-  updateProduct
+  updateProduct,
 );
 
 // productRouter.get(

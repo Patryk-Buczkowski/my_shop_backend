@@ -25,7 +25,7 @@ const validateNewCommentSchema = Joi.object({
 export const validateNewComment: RequestHandler<{}, {}, NewCommentType> = (
   req,
   res,
-  next
+  next,
 ) => {
   const { error } = validateNewCommentSchema.validate(req.body, {
     abortEarly: false,

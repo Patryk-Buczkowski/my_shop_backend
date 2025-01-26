@@ -1,4 +1,4 @@
-import { RequestHandler, Response } from "express";
+import { RequestHandler } from "express";
 import User from "../../schemas/userSchema";
 import { createUser } from "../../services/usersService.js";
 import { UserType } from "../../types/userType";
@@ -7,7 +7,7 @@ import { nanoid } from "nanoid";
 
 export const addUser: RequestHandler<{}, any, UserType> = async (
   req,
-  res
+  res,
 ): Promise<any> => {
   const { name, age, email, password, country } = req.body;
 

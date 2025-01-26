@@ -69,15 +69,14 @@ const userSchema = new schema<UserType>(
       expires: 86400,
     },
   },
-  { timestamps: true }
+  { timestamps: true },
 );
 
-userSchema.virtual('productsBoughtList', {
-  ref: 'product',
+userSchema.virtual("productsBoughtList", {
+  ref: "product",
   localField: "productsBought.product",
   foreignField: "_id",
-
-})
+});
 
 const User = mongoose.model("user", userSchema);
 

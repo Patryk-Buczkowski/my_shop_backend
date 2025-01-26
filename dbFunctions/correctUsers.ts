@@ -5,12 +5,12 @@ dotenv.config();
 const { COSMOS_DB_CONNECTION_STRING = "" } = process.env;
 
 mongoose
-.connect(COSMOS_DB_CONNECTION_STRING)
-.then(() => console.log("Connected to database"))
-.catch((error) => {
-  console.error("Database connection error:", error);
-  process.exit(1);
-});
+  .connect(COSMOS_DB_CONNECTION_STRING)
+  .then(() => console.log("Connected to database"))
+  .catch((error) => {
+    console.error("Database connection error:", error);
+    process.exit(1);
+  });
 
 const correctUsers = async () => {
   const start = performance.now();

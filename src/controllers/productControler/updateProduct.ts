@@ -1,11 +1,9 @@
 import { RequestHandler } from "express";
-import Product from "schemas/productsSchema";
 import { updateProductData } from "services/productService";
-import { ProductType } from "types/productType";
 
 export const updateProduct: RequestHandler<{ productId: number }, {}> = async (
   req,
-  res
+  res,
 ) => {
   try {
     const updates = req.body;
@@ -19,6 +17,6 @@ export const updateProduct: RequestHandler<{ productId: number }, {}> = async (
       res.json("product updated");
     }
   } catch (error) {
-    res.status(500).json("Internal server error");
+    res.status(500).json({ message: "Internal server error", error });
   }
 };

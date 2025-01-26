@@ -28,8 +28,7 @@ export const getUserByToken = async (verificationToken: string) => {
     const user = await User.findOne({ verificationToken });
 
     if (!user) {
-       return null;
-
+      return null;
     }
     user.verificationToken = "null";
     // user.tokenCreatedAt = null;
@@ -90,7 +89,7 @@ export const createNewPassword = async (email: string, password: string) => {
   const user = await User.findOneAndUpdate(
     { email },
     { password: hashedPassword },
-    { new: true }
+    { new: true },
   );
 
   if (!user) {

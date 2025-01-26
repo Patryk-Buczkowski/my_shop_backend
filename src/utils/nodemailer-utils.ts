@@ -72,7 +72,6 @@ export const sendVerificationEmail = async (user: UserType) => {
   }
 };
 
-
 export const sendConfirmResetPasswordEmail = async (user: UserType) => {
   const transporter = createTransporter(user);
 
@@ -116,9 +115,8 @@ export const sendConfirmResetPasswordEmail = async (user: UserType) => {
   }
 };
 
-
 export const sendNewPassword = async (user: UserType, newPass: string) => {
-  const transporter = createTransporter(user); 
+  const transporter = createTransporter(user);
 
   try {
     const info = await transporter.sendMail({
@@ -152,4 +150,3 @@ export const sendNewPassword = async (user: UserType, newPass: string) => {
     console.error("Error sending email:", error);
   }
 };
-

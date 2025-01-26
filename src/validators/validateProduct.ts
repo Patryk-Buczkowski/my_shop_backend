@@ -2,7 +2,7 @@ import { RequestHandler } from "express";
 import Joi from "joi";
 import { ProductType } from "types/productType";
 
-const validateProductSchema= Joi.object({
+const validateProductSchema = Joi.object({
   title: Joi.string().min(3).required().messages({
     "string.base": "'title' must be type of text",
     "string.min": "'title' of product must have at least three figures",
@@ -26,18 +26,22 @@ const validateProductSchema= Joi.object({
   }),
 });
 
-export const validateProducts: RequestHandler<{},{}, ProductType> = (req, res, next): void => {
-    const { error } = validateProductSchema.validate(req.body, {
-        abortEarly: false,
-      });
-    
-      if (error) {
-        const errorMessages = error.details.map((err) => err.message);
-        res
-          .status(400)
-          .json({ message: "Validation failed", errors: errorMessages });
-        return;
-      }
-    
-      next();
-    };
+export const validateProducts: RequestHandler<{}, {}, ProductType> = (
+  req,
+  res,
+  next,
+): void => {
+  const { error } = validateProductSchema.validate(req.body, {
+    abortEarly: false,
+  });
+
+  if (error) {
+    const errorMessages = error.details.map((err) => err.message);
+    res
+      .status(400)
+      .json({ message: "Validation failed", errors: errorMessages });
+    return;
+  }
+
+  next();
+};

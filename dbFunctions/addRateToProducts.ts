@@ -1,8 +1,6 @@
 import mongoose from "mongoose";
-import { faker } from "@faker-js/faker";
 import dotenv from "dotenv";
 import Product from "../src/schemas/productsSchema";
-import { error } from "console";
 dotenv.config();
 const { COSMOS_DB_CONNECTION_STRING = "" } = process.env;
 
@@ -23,7 +21,7 @@ const addRateToProducts = async () => {
 
     for (const product of products) {
       const rates: number[] = Array.from({ length: 50 }, () =>
-        Math.floor(Math.random() * 7)
+        Math.floor(Math.random() * 7),
       );
 
       for (const rate of rates) {

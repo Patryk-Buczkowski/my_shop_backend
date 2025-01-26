@@ -11,7 +11,6 @@ export const filterProduct: RequestHandler<
 > = async (req, res) => {
   try {
     const { category, maxPrice, minPrice, sortBy } = req.query;
-    
 
     const query = {
       ...(category && { category }),
@@ -21,8 +20,8 @@ export const filterProduct: RequestHandler<
 
     const sortOption = createSortOption(sortBy);
 
-    if (sortOption === null) { 
-      res.status(400).json('Invalid sort option');
+    if (sortOption === null) {
+      res.status(400).json("Invalid sort option");
       return;
     }
 
@@ -30,6 +29,6 @@ export const filterProduct: RequestHandler<
 
     res.json(products);
   } catch (error) {
-    res.status(500).json({"Internal server error": error});
+    res.status(500).json({ "Internal server error": error });
   }
 };

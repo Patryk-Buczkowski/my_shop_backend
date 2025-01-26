@@ -1,4 +1,3 @@
-import { required } from "joi";
 import mongoose from "mongoose";
 import { CommentType } from "types/productType";
 
@@ -23,7 +22,7 @@ const commentSchema = new schema<CommentType>(
       required: true,
     },
   },
-  { timestamps: true }
+  { timestamps: true },
 );
 
 const Comment = mongoose.model("comment", commentSchema);

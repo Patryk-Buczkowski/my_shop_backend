@@ -11,10 +11,11 @@ const uriDb = process.env.COSMOS_DB_CONNECTION_STRING || "";
 
 const startServer = async () => {
   try {
-    await mongoose.connect(uriDb,
+    await mongoose.connect(
+      uriDb,
       // {dbName}
     );
-    console.log(`Database connection successful`);
+    console.log("Database connection successful");
     await User.createIndexes();
     console.log("Indexes created for User model");
     app.listen(PORT, () => {

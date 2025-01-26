@@ -33,6 +33,6 @@ export const newPassword: RequestHandler<{
 
     // res.redirect()   when front ready
   } catch (error) {
-    res.status(500).json("Internal server error");
+    res.status(500).json({ message: "Internal server error", error });
   }
 };

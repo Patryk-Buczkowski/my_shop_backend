@@ -5,7 +5,7 @@ import Product from "schemas/productsSchema";
 
 export const addProduct: RequestHandler<{}, {}, ProductType> = async (
   req,
-  res
+  res,
 ) => {
   const {
     updateAverageRate,

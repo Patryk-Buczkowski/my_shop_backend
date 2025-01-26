@@ -23,7 +23,7 @@ const joinCommentsWithPoducts = async () => {
     for (const product of products) {
       const comments = await Comments.find({ productId: product._id });
       const comentsIds = comments.map((comment) => comment._id as CommentType);
-      
+
       product.comments = comentsIds;
 
       await product.save();
@@ -31,7 +31,7 @@ const joinCommentsWithPoducts = async () => {
 
     console.log("comments are added");
   } catch (error) {
-    console.error("error in adding comments");
+    console.error({ message: "error in adding comments", error });
   } finally {
     mongoose.connection.close();
     const end = performance.now();

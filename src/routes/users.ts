@@ -20,16 +20,13 @@ userRouter.get("/resetPassword", requestResetPassword);
 
 // userRouter.get("/resetPssword/:verificationToken", resetForm); this route for frontend
 
-userRouter.get(
-  "/resetPassword/:verificationToken",
-  newPassword
-);
+userRouter.get("/resetPassword/:verificationToken", newPassword);
 
 userRouter.post(
   "/changePassword",
   passport.authenticate("roleUser", { session: false }),
   validateNewPassword,
-  changePassord
+  changePassord,
 );
 
 export default userRouter;

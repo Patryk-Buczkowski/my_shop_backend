@@ -11,7 +11,7 @@ export const verifyUser: RequestHandler = async (req, res) => {
       res.status(400).json({ error: "Token has expired" });
       return;
     }
-    
+
     if (!user) {
       res.status(404).json("There is no such user");
       // res.redirect()   when front ready

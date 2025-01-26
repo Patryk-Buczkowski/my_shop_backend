@@ -1,13 +1,10 @@
 import { RequestHandler } from "express";
-import mongoose from "mongoose";
-import { nanoid } from "nanoid";
-import Product from "schemas/productsSchema";
 import { addNewComment } from "services/productService";
 import { NewCommentType } from "types/newCommentType";
 
 export const addComment: RequestHandler<{}, {}, NewCommentType> = async (
   req,
-  res
+  res,
 ) => {
   const { comment, productId, userId } = req.body;
   const newComment: NewCommentType = {

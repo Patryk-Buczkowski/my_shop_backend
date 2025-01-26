@@ -12,9 +12,9 @@ export const addRate: RequestHandler<
 
   try {
     if (rate > 6 || rate < 0) {
-        res.status(400).json("Pass correct rate value");
-        return;
-      }
+      res.status(400).json("Pass correct rate value");
+      return;
+    }
 
     const product = await updateRating(productId, rate);
 

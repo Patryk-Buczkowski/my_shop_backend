@@ -1,8 +1,6 @@
 import { RequestHandler } from "express";
-import { Types } from "mongoose";
 import Comment from "schemas/commentSchema";
 import Product from "schemas/productsSchema";
-import { updateProductComment } from "services/productService";
 
 export const deleteComment: RequestHandler = async (req, res) => {
   const { commentId } = req.params;
@@ -26,6 +24,6 @@ export const deleteComment: RequestHandler = async (req, res) => {
     await comment.deleteOne();
     res.status(200).json({ message: "Comment deleted successfully" });
   } catch (error) {
-    res.status(500).json({ message: "Internal server error" });
+    res.status(500).json({ message: "Internal server error", error });
   }
 };

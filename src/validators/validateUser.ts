@@ -42,19 +42,19 @@ const validateUserSchema = Joi.object({
     .messages({
       "string.base": `"country" should be a type of 'text'`,
       "any.only": `"country" must be one of: ${Object.keys(countryObj).join(
-        ", "
+        ", ",
       )}`,
       "any.required": `"country" is a required field`,
     }),
-    verified: Joi.boolean().default(false).messages({
-      "boolean.base": `"verified" should be of type boolean`,
-    }),
+  verified: Joi.boolean().default(false).messages({
+    "boolean.base": `"verified" should be of type boolean`,
+  }),
 });
 
 export const validateUser: RequestHandler<{}, {}, UserType> = (
   req,
   res,
-  next
+  next,
 ): void => {
   const { error } = validateUserSchema.validate(req.body, {
     abortEarly: false,

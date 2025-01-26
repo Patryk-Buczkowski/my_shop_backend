@@ -5,7 +5,7 @@ const createRandomDate = (start: string, end: string): string => {
   const startDate = new Date(start).getTime();
   const endDate = new Date(end).getTime();
   const randomDate = new Date(
-    startDate + Math.random() * (endDate - startDate)
+    startDate + Math.random() * (endDate - startDate),
   );
 
   return randomDate.toISOString().split("T")[0];

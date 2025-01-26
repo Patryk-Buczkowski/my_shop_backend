@@ -22,7 +22,9 @@ const addUsers = async () => {
 
   try {
     const usersToInsert = Array.from({ length: 30 }, () => {
-      const countryIndex = Math.floor(Math.random() * arrayFromCountryObj.length);
+      const countryIndex = Math.floor(
+        Math.random() * arrayFromCountryObj.length,
+      );
       const roleIndex = Math.floor(Math.random() * arrRole.length);
 
       return {

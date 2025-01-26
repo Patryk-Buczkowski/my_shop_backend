@@ -1,6 +1,5 @@
 import { RequestHandler } from "express";
 import User from "schemas/userSchema";
-import { resetPassAndSend } from "services/usersService";
 import dotenv from "dotenv";
 import { nanoid } from "nanoid";
 import { sendConfirmResetPasswordEmail } from "utils/nodemailer-utils";
@@ -27,7 +26,7 @@ export const requestResetPassword: RequestHandler<
 
     // confirm reset pssword in mail
     sendConfirmResetPasswordEmail(user);
-    res.json('Reset password mail sent')
+    res.json("Reset password mail sent");
     // const correct = await resetPassAndSend(email, user);
 
     // if (correct) {

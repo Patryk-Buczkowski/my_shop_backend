@@ -26,7 +26,7 @@ passport.use(
     } catch (err) {
       return done(err);
     }
-  })
+  }),
 );
 
 passport.use(
@@ -43,7 +43,7 @@ passport.use(
     } catch (err) {
       return done(err);
     }
-  })
+  }),
 );
 
 passport.use(
@@ -60,5 +60,5 @@ passport.use(
     } catch (err) {
       return done(err);
     }
-  })
+  }),
 );

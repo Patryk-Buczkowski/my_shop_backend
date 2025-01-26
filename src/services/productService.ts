@@ -19,7 +19,6 @@ export const createProduct = async (product: ProductType) => {
 
 const splitElement = (elem: string) => {
   const [field, order] = elem.split(":");
-  let sortOption = {};
 
   console.log("field", field);
   console.log("order", order);
@@ -49,7 +48,7 @@ export const createSortOption = (sortBy: string | Array<string>) => {
 
 export const updateProductData = async (
   updates: Partial<ProductType>,
-  productId: number
+  productId: number,
 ) => {
   try {
     const updatedProduct = await Product.findByIdAndUpdate(productId, updates, {
@@ -79,7 +78,7 @@ export const addNewComment = async ({
     const updatedProduct = await Product.findByIdAndUpdate(
       productId,
       { $push: { comments: NewComment._id } },
-      { new: true }
+      { new: true },
     ).populate("commentsList");
 
     console.log("list:", updatedProduct.commentsList);
@@ -97,7 +96,7 @@ export const updateProductComment = async (
     _id: Types.ObjectId;
   } & {
     __v: number;
-  }
+  },
 ) => {
   const product = await Product.findByIdAndUpdate(comment.productId, {
     $pull: { comments: comment._id },
@@ -112,13 +111,13 @@ export const updateProductComment = async (
 
 export const updateRating = async (
   productId: Types.ObjectId,
-  newRate: number
+  newRate: number,
 ) => {
   try {
     const product = await Product.findByIdAndUpdate(
       productId,
       { $push: { rate: newRate } },
-      { new: true }
+      { new: true },
     );
 
     const updatedProduct = await Product.findById(productId);
@@ -130,5 +129,7 @@ export const updateRating = async (
     } else {
       return null;
     }
-  } catch (error) {}
+  } catch (error) {
+    console.error(error);
+  }
 };
