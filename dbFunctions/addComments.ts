@@ -43,5 +43,5 @@ const generateRandomComments = async () => {
 };
 
 generateRandomComments()
-  .then(() => console.log("generate comments successful"))
-  .catch((err) => console.error(err));
+  .then(() => console.log("generate comments successful 👍"))
+  .catch(() => console.log("generate comments error ❌"));

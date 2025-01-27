@@ -14,8 +14,10 @@ mongoose
 
 const correctUsers = async () => {
   const start = performance.now();
+
   try {
     const users = await User.find();
+
     for (const user of users) {
       user.verified = true;
       user.isActive = false;
@@ -35,5 +37,5 @@ const correctUsers = async () => {
 };
 
 correctUsers()
-  .then(() => console.log("Correction done"))
-  .catch(() => console.log("correction error"));
+  .then(() => console.log("Correction done 👍"))
+  .catch(() => console.log("correction error ❌"));

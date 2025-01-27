@@ -40,5 +40,5 @@ const addRateToProducts = async () => {
 };
 
 addRateToProducts()
-  .then(() => console.log("Adding rate to product successful"))
-  .catch((error) => console.error(error));
+  .then(() => console.log("Adding rate to product successful 👍"))
+  .catch(() => console.log("Adding rate to product error ❌"));

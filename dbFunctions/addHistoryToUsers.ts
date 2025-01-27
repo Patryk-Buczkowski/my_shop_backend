@@ -42,4 +42,6 @@ const addHistoryToUsers = async () => {
   }
 };
 
-addHistoryToUsers();
+addHistoryToUsers()
+  .then(() => console.log("Products added 👍"))
+  .catch(() => console.log("Error i  adding Products ❌"));

@@ -39,4 +39,6 @@ const joinCommentsWithPoducts = async () => {
   }
 };
 
-joinCommentsWithPoducts();
+joinCommentsWithPoducts()
+  .then(() => console.log("Join successful 👍"))
+  .catch(() => console.log("Join error ❌"));

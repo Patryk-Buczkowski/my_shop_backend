@@ -49,10 +49,10 @@ const addUsers = async () => {
   } finally {
     mongoose.connection.close();
     const end = performance.now();
-    console.log(`Adding users took: ${end - start} ms`);
+    console.log(`Adding users took: ${(end - start).toFixed(2)} ms`);
   }
 };
 
 addUsers()
-  .then(() => console.log("Adding users done"))
-  .catch(() => console.log("Adding users error"));
+  .then(() => console.log("Adding users done 👍"))
+  .catch(() => console.log("Adding users error ❌"));
