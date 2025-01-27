@@ -3,10 +3,7 @@ import Product from "schemas/productsSchema";
 import User from "schemas/userSchema";
 import { ProductBought } from "types/productBought";
 
-export const getUserHistory: RequestHandler<{ userId: string }> = async (
-  req,
-  res,
-) => {
+export const getUser: RequestHandler<{ userId: string }> = async (req, res) => {
   const { userId } = req.params;
   try {
     const user = await User.findById(userId)

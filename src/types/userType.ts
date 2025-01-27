@@ -13,7 +13,7 @@ export type UserType = {
   role: RoleType;
   verificationToken: string;
   productsBought: ProductBought[];
-  productsBoughtList: ProductType[];
+  productsBoughtList?: ProductType[];
   verified: boolean;
   tokenCreatedAt?: Date | null;
   tokenExpiration?: Date | null;

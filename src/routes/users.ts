@@ -9,6 +9,7 @@ import passport from "passport";
 import { changePassord } from "controllers/userController/changePassord";
 import { newPassword } from "controllers/userController/newPassword";
 import { validateNewPassword } from "validators/validateNewPassword";
+import { getUser } from "controllers/userController/getUser";
 
 const userRouter = express.Router();
 
@@ -17,6 +18,12 @@ userRouter.post("/addUser", validateUser, addUser);
 userRouter.get("/verifyUser/:verificationToken", verifyUser);
 userRouter.post("/verifyUser", reVerify);
 userRouter.get("/resetPassword", requestResetPassword);
+
+userRouter.get(
+  "/user/:userId",
+  passport.authenticate("roleUser", { session: false }),
+  getUser,
+);
 
 // userRouter.get("/resetPssword/:verificationToken", resetForm); this route for frontend
 
