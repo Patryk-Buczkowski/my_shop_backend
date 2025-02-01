@@ -10,8 +10,8 @@ export type ProductType = {
   averageRate: number;
   rateCount: number;
   category?: CategoryType;
-  commentsList: CommentType[];
-  updateAverageRate: (newRate: number) => Promise<void>;
+  commentsList?: CommentType[];
+  updateAverageRate?: (newRate: number) => Promise<void>;
 };
 
 export type CategoryType =

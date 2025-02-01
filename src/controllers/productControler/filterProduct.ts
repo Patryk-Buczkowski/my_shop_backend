@@ -10,12 +10,13 @@ export const filterProduct: RequestHandler<
   FilterProductType
 > = async (req, res) => {
   try {
-    const { category, maxPrice, minPrice, sortBy } = req.query;
+    const { category, maxPrice, minPrice, sortBy, title } = req.query;
 
     const query = {
       ...(category && { category }),
       ...(maxPrice && { price: { $lte: +maxPrice } }),
       ...(minPrice && { price: { $gte: +minPrice } }),
+      ...(title && { title: { $regex: title, $options: "i" } }),
     };
 
     const sortOption = createSortOption(sortBy);

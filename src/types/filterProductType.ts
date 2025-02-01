@@ -10,5 +10,6 @@ export type FilterProductType = {
   category?: string;
   minPrice?: string;
   maxPrice?: string;
+  title?: string;
   sortBy?: SortBy | Array<SortBy>;
 };
