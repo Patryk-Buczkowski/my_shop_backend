@@ -26,6 +26,7 @@ export const getDetails: RequestHandler<{ productId: string }> = async (
       avgRate: product.averageRate,
       rateCount: product.rateCount,
       category: product.category,
+      pictureUrl: product.pictureUrl,
     });
   } catch (error) {
     res.status(500).json({ message: "Internal server error", error });

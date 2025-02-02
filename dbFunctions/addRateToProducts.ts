@@ -25,7 +25,9 @@ const addRateToProducts = async () => {
       );
 
       for (const rate of rates) {
-        await product.updateAverageRate(rate);
+        if (product.updateAverageRate) {
+          await product.updateAverageRate(rate);
+        }
       }
 
       await product.save();
@@ -35,7 +37,7 @@ const addRateToProducts = async () => {
   } finally {
     mongoose.connection.close();
     const end = performance.now();
-    console.log(`Adding rate to comments took: ${end - start} ms`);
+    console.log(`Adding rate to comments took: ${(end - start).toFixed(2)} ms`);
   }
 };
 

@@ -12,6 +12,7 @@ export type ProductType = {
   category?: CategoryType;
   commentsList?: CommentType[];
   updateAverageRate?: (newRate: number) => Promise<void>;
+  pictureUrl: string;
 };
 
 export type CategoryType =

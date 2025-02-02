@@ -73,6 +73,9 @@ const productSchema = new schema<ProductType>(
       type: String,
       require: [true, "Description is required"],
     },
+    pictureUrl: {
+      type: String,
+    },
     quantityAvailable: {
       type: Number,
       default: 1,
