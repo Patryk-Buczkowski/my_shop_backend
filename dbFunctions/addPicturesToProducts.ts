@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
+import pLimit from "p-limit";
 import dotenv from "dotenv";
 import Product from "../src/schemas/productsSchema";
-import axios from "axios";
 dotenv.config();
 const { COSMOS_DB_CONNECTION_STRING = "" } = process.env;
 
@@ -13,18 +13,30 @@ await mongoose
     process.exit(1);
   });
 
+const getPhoto = async () => {
+  const response = await fetch("https://picsum.photos/400/400?random=12345");
+
+  return response.url;
+};
+
 const addPicturesToProducts = async () => {
   const start = performance.now();
   try {
-    const response = await fetch("https://picsum.photos/400/400?random=12345");
+    const products = await Product.find();
+    const limit = pLimit(5);
+    const urlArr = await Promise.all(
+      products.map(() => limit(() => getPhoto())),
+    );
 
-    const url = response.url;
+    const updatePromises = products.map((product, index) =>
+      Product.updateOne(
+        { _id: product._id },
+        { $set: { pictureUrl: urlArr[index] } },
+      ),
+    );
 
-    const result = await Product.updateMany({
-      $set: { pictureUrl: url },
-    });
-
-    console.log(`Updated ${result.modifiedCount} products.`);
+    const results = await Promise.all(updatePromises);
+    console.log(`Updated ${results.length} products.`);
   } catch (error) {
     console.error(error);
   } finally {

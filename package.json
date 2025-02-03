@@ -24,7 +24,9 @@
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.9.4",
     "nanoid": "^5.0.9",
+    "node-fetch": "^3.3.2",
     "nodemailer": "^6.9.16",
+    "p-limit": "^6.2.0",
     "passport": "^0.7.0",
     "passport-jwt": "^4.0.1",
     "uuid": "^11.0.5"
