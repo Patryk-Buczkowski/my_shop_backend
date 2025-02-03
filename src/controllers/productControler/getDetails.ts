@@ -23,7 +23,7 @@ export const getDetails: RequestHandler<{ productId: string }> = async (
       price: product.price,
       description: product.description,
       quantity: product.quantityAvailable,
-      avgRate: product.averageRate,
+      averageRate: product.averageRate,
       rateCount: product.rateCount,
       category: product.category,
       pictureUrl: product.pictureUrl,
