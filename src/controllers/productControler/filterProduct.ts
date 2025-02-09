@@ -12,12 +12,17 @@ export const filterProduct: RequestHandler<
   try {
     const { category, maxPrice, minPrice, sortBy, title } = req.query;
 
-    const query = {
-      ...(category && { category }),
-      ...(maxPrice && { price: { $lte: +maxPrice } }),
-      ...(minPrice && { price: { $gte: +minPrice } }),
-      ...(title && { title: { $regex: title, $options: "i" } }),
-    };
+    const query: Record<string, any> = {};
+
+    if (category) query.category = category;
+    if (title) query.title = { $regex: title, $options: "i" };
+
+    if (minPrice || maxPrice) {
+      query.price = {
+        ...(minPrice ? { $gte: +minPrice } : {}),
+        ...(maxPrice ? { $lte: +maxPrice } : {}),
+      };
+    }
 
     const sortOption = createSortOption(sortBy);
 
