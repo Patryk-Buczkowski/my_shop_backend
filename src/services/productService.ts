@@ -4,7 +4,7 @@ import Comment from "../schemas/commentSchema";
 import { CommentType, ProductType } from "../types/productType";
 import { Types } from "mongoose";
 
-const validSortFields = ["title", "price", "averageRate"];
+const validSortFields = ["title", "price", "rating"];
 
 export const createProduct = async (product: ProductType) => {
   const newProduct = new Product({ ...product });
@@ -18,11 +18,12 @@ export const createProduct = async (product: ProductType) => {
 };
 
 const splitElement = (elem: string) => {
-  const [field, order] = elem.split(":");
+  const [field, order] = elem.split("_");
 
   console.log("field", field);
   console.log("order", order);
   if (!validSortFields.includes(field)) {
+    console.log("err", field);
     return null;
   }
   return { [field]: order === "desc" ? -1 : 1 };
