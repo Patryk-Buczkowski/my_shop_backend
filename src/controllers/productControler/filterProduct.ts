@@ -13,7 +13,7 @@ export const filterProduct: RequestHandler<
     const { category, maxPrice, minPrice, sortBy, title, pageNr, limit } =
       req.query;
 
-    const lim = Number(limit) || 10;
+    const lim = Number(limit) || 4;
     const pNr = Number(pageNr) || 1;
     const skip = (pNr - 1) * lim;
 
