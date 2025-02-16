@@ -10,12 +10,7 @@ export const filterProduct: RequestHandler<
   FilterProductType
 > = async (req, res) => {
   try {
-    const { category, maxPrice, minPrice, sortBy, title, pageNr, limit } =
-      req.query;
-
-    const lim = Number(limit) || 4;
-    const pNr = Number(pageNr) || 1;
-    const skip = (pNr - 1) * lim;
+    const { category, maxPrice, minPrice, sortBy, title } = req.query;
 
     const query: Record<string, any> = {};
 
@@ -36,11 +31,7 @@ export const filterProduct: RequestHandler<
       return;
     }
 
-    const products = await Product.find(query)
-      .sort(sortOption)
-      .skip(skip)
-      .limit(lim)
-      .exec();
+    const products = await Product.find(query).sort(sortOption).exec();
 
     res.json(products);
   } catch (error) {

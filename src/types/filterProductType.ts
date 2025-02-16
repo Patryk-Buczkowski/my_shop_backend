@@ -11,7 +11,5 @@ export type FilterProductType = {
   minPrice?: string;
   maxPrice?: string;
   title?: string;
-  pageNr?: string;
-  limit?: string;
   sortBy?: SortBy | Array<SortBy>;
 };
