@@ -9,7 +9,7 @@ export const addUser: RequestHandler<{}, any, UserType> = async (
   req,
   res,
 ): Promise<any> => {
-  const { name, age, email, password, country } = req.body;
+  const { name, age, email, password, country, imgLink } = req.body;
 
   const start = performance.now();
   const hashedPassword = bcrypt.hashSync(password, 11);
@@ -30,6 +30,7 @@ export const addUser: RequestHandler<{}, any, UserType> = async (
     password: hashedPassword,
     verificationToken,
     country,
+    imgLink,
   };
   try {
     const exist = await User.findOne({ email: newUser.email });

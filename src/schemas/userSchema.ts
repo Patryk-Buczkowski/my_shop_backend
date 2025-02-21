@@ -10,6 +10,9 @@ const userSchema = new schema<UserType>(
       minlength: [3, "Name must have min 3 letters"],
       required: [true, "Name is required"],
     },
+    imgLink: {
+      type: String,
+    },
     age: {
       type: Number,
       required: [true, "Age is required"],

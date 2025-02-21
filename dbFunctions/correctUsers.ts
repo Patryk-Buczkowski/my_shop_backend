@@ -19,11 +19,7 @@ const correctUsers = async () => {
     const users = await User.find();
 
     for (const user of users) {
-      user.verified = true;
-      user.isActive = false;
-      user.verificationToken = "null";
-      user.tokenCreatedAt = null;
-      user.tokenExpiration = null;
+      user.imgLink = "";
 
       await user.save();
     }

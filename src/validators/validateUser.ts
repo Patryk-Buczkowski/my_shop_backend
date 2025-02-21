@@ -11,6 +11,10 @@ const validateUserSchema = Joi.object({
     "any.required": `"name" is a required field`,
   }),
 
+  imgLink: Joi.string().allow(null, "").optional().messages({
+    "string.base": `"imgLink" should be text`,
+  }),
+
   age: Joi.number().min(18).required().messages({
     "number.base": `"age" should be a type of 'number'`,
     "number.min": `"age" must be at least 18`,
