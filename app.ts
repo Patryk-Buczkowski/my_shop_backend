@@ -11,7 +11,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 const corseOptions = {
-  origin: ["https://patryk-buczkowski.github.io/"],
+  origin: ["https://patryk-buczkowski.github.io"],
   // origin: true, // for dev
   methods: ["GET", "POST", "PUT", "DELETE"],
   allowedHeaders: ["Content-Type", "Authorization"],
