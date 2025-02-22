@@ -15,7 +15,7 @@ export type UserType = {
   productsBought: ProductBought[];
   productsBoughtList?: ProductType[];
   verified: boolean;
-  imgLink: File;
+  imgLink?: string;
   tokenCreatedAt?: Date | null;
   tokenExpiration?: Date | null;
 };
