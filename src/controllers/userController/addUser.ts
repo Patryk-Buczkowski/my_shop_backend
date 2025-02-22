@@ -9,7 +9,10 @@ export const addUser: RequestHandler<{}, any, UserType> = async (
   req,
   res,
 ): Promise<any> => {
-  const { name, age, email, password, country, imgLink } = req.body;
+  const { name, age, email, password, country } = req.body;
+  const imgLink = req.file ? req.file.path : null;
+
+  console.log("Plik:", req.file);
 
   const start = performance.now();
   const hashedPassword = bcrypt.hashSync(password, 11);

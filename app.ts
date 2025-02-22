@@ -8,6 +8,12 @@ import "./src/utils/passport-utils.js";
 const app = express();
 app.use(express.json());
 
+// Middleware dla formularzy (w tym `multipart/form-data`)
+app.use(express.urlencoded({ extended: true }));
+
+// Konfiguracja `multer` (folder `uploads/` dla plików)
+// const upload = multer({ dest: "uploads/" });
+
 const corseOptions = {
   // origin: [
   //   "http://example.com",

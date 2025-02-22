@@ -12,6 +12,7 @@ const userSchema = new schema<UserType>(
     },
     imgLink: {
       type: String,
+      required: false,
     },
     age: {
       type: Number,

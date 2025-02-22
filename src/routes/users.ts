@@ -10,11 +10,13 @@ import { changePassord } from "controllers/userController/changePassord";
 import { newPassword } from "controllers/userController/newPassword";
 import { validateNewPassword } from "validators/validateNewPassword";
 import { getUser } from "controllers/userController/getUser";
+import multer from "multer";
 
+const upload = multer({ dest: "uploads/" });
 const userRouter = express.Router();
 
 userRouter.post("/login", loginUser);
-userRouter.post("/addUser", validateUser, addUser);
+userRouter.post("/addUser", upload.single("imgLink"), validateUser, addUser);
 userRouter.get("/verifyUser/:verificationToken", verifyUser);
 userRouter.post("/verifyUser", reVerify);
 userRouter.get("/resetPassword", requestResetPassword);
