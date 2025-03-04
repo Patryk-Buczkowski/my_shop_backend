@@ -4,15 +4,17 @@ import cors from "cors";
 import productRouter from "./src/routes/product.js";
 import passport from "passport";
 import "./src/utils/passport-utils.js";
+import cookieParser from "cookie-parser";
 
 const app = express();
 app.use(express.json());
+app.use(cookieParser());
 
 app.use(express.urlencoded({ extended: true }));
 
 const corseOptions = {
-  origin: ["https://patryk-buczkowski.github.io"],
-  // origin: true, // for dev
+  // origin: ["https://patryk-buczkowski.github.io"],
+  origin: true, // for dev
   methods: ["GET", "POST", "PUT", "DELETE"],
   allowedHeaders: ["Content-Type", "Authorization"],
   credentials: true,

@@ -2,21 +2,35 @@ import passport from "passport";
 import passportJWT from "passport-jwt";
 import dotenv from "dotenv";
 import User from "../schemas/userSchema";
+import { Request } from "express";
 
 dotenv.config();
 
 const secret = process.env.SECRET;
+const extractCookie = (req: Request) => {
+  let token = null;
+  if (req && req.cookies) {
+    token = req.cookies.token;
+  }
+  return token;
+};
 
-const ExtractJWT = passportJWT.ExtractJwt;
-const Strategy = passportJWT.Strategy;
 const params = {
   secretOrKey: secret,
-  jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken(),
+  jwtFromRequest: extractCookie,
 };
+
+const Strategy = passportJWT.Strategy;
+// const ExtractJWT = passportJWT.ExtractJwt;
+// const params = {
+//   secretOrKey: secret,
+//   jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken(),
+// };
 
 passport.use(
   "roleUser",
   new Strategy(params, async (payload, done) => {
+    console.log(params.jwtFromRequest);
     try {
       const user = await User.findById(payload.id);
       if (!user) {
