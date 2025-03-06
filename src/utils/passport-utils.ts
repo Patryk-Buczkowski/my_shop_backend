@@ -7,6 +7,11 @@ import { Request } from "express";
 dotenv.config();
 
 const secret = process.env.SECRET;
+
+if (!secret) {
+  throw new Error("SECRET environment variable is not defined");
+}
+
 const extractCookie = (req: Request) => {
   let token = null;
   if (req && req.cookies) {

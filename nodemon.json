@@ -1,5 +1,5 @@
 {
   "exec": "npx tsx server.ts",
-  "watch": ["src"],
+  "watch": ["."],
   "ext": "ts tsx"
 }
