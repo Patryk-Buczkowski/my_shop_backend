@@ -11,6 +11,7 @@ import { changeQuantity } from "controllers/productControler/changeQuantity";
 import { getDetails } from "controllers/productControler/getDetails";
 import { filterProduct } from "controllers/productControler/filterProduct";
 import { updateProduct } from "controllers/productControler/updateProduct";
+import { deleteProduct } from "controllers/productControler/deleteProduct";
 
 const productRouter = express.Router();
 
@@ -33,6 +34,12 @@ productRouter.delete(
   "/deleteComment/:commentId",
   passport.authenticate("roleAdmin", { session: false }),
   deleteComment,
+);
+
+productRouter.delete(
+  "/deleteProduct/:productId",
+  passport.authenticate("roleAdmin", { session: false }),
+  deleteProduct,
 );
 
 productRouter.post(
