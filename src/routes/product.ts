@@ -43,7 +43,7 @@ productRouter.post(
 
 productRouter.put(
   "/changeProductQty/:productId",
-  // passport.authenticate("roleModerator", { session: false }),
+  passport.authenticate("roleModerator", { session: false }),
   changeQuantity,
 );
 

@@ -13,11 +13,8 @@ if (!secret) {
 }
 
 const extractCookie = (req: Request) => {
-  let token = null;
-  if (req && req.cookies) {
-    token = req.cookies.token;
-  }
-  return token;
+  console.log("Extracted token:", req.cookies?.token);
+  return req.cookies?.token || null;
 };
 
 const params = {
