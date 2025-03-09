@@ -82,7 +82,11 @@ const productSchema = new schema<ProductType>(
       min: [1, "quantityAvailable cannot be negative"],
     },
   },
-  { timestamps: true },
+  {
+    timestamps: true,
+    toJSON: { virtuals: true },
+    toObject: { virtuals: true },
+  },
 );
 
 productSchema.methods.updateAverageRate = function (newRate: number) {

@@ -11,7 +11,6 @@ export const filterProduct: RequestHandler<
 > = async (req, res) => {
   try {
     const { category, maxPrice, minPrice, sortBy, title } = req.query;
-
     const query: Record<string, any> = {};
 
     if (category) query.category = category;
