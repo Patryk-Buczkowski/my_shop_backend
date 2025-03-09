@@ -30,23 +30,16 @@ export const filterProduct: RequestHandler<
       return;
     }
 
-    // const products = await Product.find(query)
-    //   .populate({
-    //     path: "commentsList",
-    //     populate: {
-    //       path: "author",
-    //       select: "name",
-    //     },
-    //   })
-    //   .sort(sortOption)
-    //   .exec();
-
     const products = await Product.find(query)
-      .populate("commentsList")
+      .populate({
+        path: "commentsList",
+        populate: {
+          path: "userId",
+          select: "name",
+        },
+      })
       .sort(sortOption)
       .exec();
-
-    res.json(products);
 
     res.json(products);
   } catch (error) {
