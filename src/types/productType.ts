@@ -1,4 +1,5 @@
 import { Types } from "mongoose";
+import { UserType } from "./userType";
 
 export type ProductType = {
   title: string;
@@ -44,4 +45,5 @@ export type CommentType = {
   comment: string;
   userId: Types.ObjectId;
   productId: Types.ObjectId;
+  author?: UserType;
 };

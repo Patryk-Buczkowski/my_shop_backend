@@ -25,5 +25,10 @@ const commentSchema = new schema<CommentType>(
   { timestamps: true },
 );
 
+commentSchema.virtual("author", {
+  ref: "user",
+  localField: "userId",
+  foreignField: "_id",
+});
 const Comment = mongoose.model("comment", commentSchema);
 export default Comment;

@@ -3,6 +3,8 @@ import { generateAccToken, validateUser } from "services/usersService";
 
 export const loginUser: RequestHandler = async (req, res, next) => {
   const { email, password } = req.body;
+  console.log("email", email);
+  console.log("password", password);
 
   try {
     const user = await validateUser(email, password);
