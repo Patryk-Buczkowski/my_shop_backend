@@ -31,7 +31,10 @@ export const filterProduct: RequestHandler<
       return;
     }
 
-    const products = await Product.find(query).sort(sortOption).exec();
+    const products = await Product.find(query)
+      .populate("commentsList")
+      .sort(sortOption)
+      .exec();
 
     res.json(products);
   } catch (error) {
