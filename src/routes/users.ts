@@ -23,7 +23,7 @@ userRouter.get("/resetPassword", requestResetPassword);
 
 userRouter.get(
   "/user/:userId",
-  // passport.authenticate("roleUser", { session: false }),
+  passport.authenticate("roleUser", { session: false }),
   getUser,
 );
 
