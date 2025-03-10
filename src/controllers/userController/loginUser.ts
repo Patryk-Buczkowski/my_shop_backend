@@ -14,6 +14,16 @@ export const loginUser: RequestHandler = async (req, res, next) => {
       return;
     }
 
+    if (!user.isActive) {
+      res.status(403).json({ message: "Account is inactive" });
+      return;
+    }
+
+    if (!user.verified) {
+      res.status(403).json({ message: "Account not verified" });
+      return;
+    }
+
     const token = generateAccToken(user._id, user.role);
 
     res.cookie("token", token, {
@@ -24,7 +34,11 @@ export const loginUser: RequestHandler = async (req, res, next) => {
     });
 
     res.json({
-      user: { email },
+      _id: user._id,
+      email: user.email,
+      name: user.name,
+      role: user.role,
+      imgLink: user.imgLink,
     });
   } catch (error) {
     console.error(error);
