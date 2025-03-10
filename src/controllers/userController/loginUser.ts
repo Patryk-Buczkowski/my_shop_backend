@@ -14,11 +14,6 @@ export const loginUser: RequestHandler = async (req, res, next) => {
       return;
     }
 
-    if (!user.isActive) {
-      res.status(403).json({ message: "Account is inactive" });
-      return;
-    }
-
     if (!user.verified) {
       res.status(403).json({ message: "Account not verified" });
       return;

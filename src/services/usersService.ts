@@ -34,6 +34,7 @@ export const getUserByToken = async (verificationToken: string) => {
     // user.tokenCreatedAt = null;
     // user.tokenExpiration = null;
     user.verified = true;
+    user.isActive = true;
 
     await user.save();
 

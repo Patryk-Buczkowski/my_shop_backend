@@ -33,7 +33,7 @@ export const addUser: RequestHandler<{}, any, UserType> = async (
     password: hashedPassword,
     verificationToken,
     country,
-    imgLink,
+    imgLink: `${imgLink}.jpg`,
   };
   try {
     const exist = await User.findOne({ email: newUser.email });
