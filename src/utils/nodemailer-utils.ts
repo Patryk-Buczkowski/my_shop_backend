@@ -10,6 +10,12 @@ if (!SMTP_USER || !SMTP_PASSWORD || !SMTP_HOST || !BACKEND_URL || !SMTP_PORT) {
   throw new Error("missing info");
 }
 
+console.log("SMTP_USER:", process.env.SMTP_USER);
+console.log("SMTP_PASS:", process.env.SMTP_PASSWORD);
+console.log("SMTP_HOST:", process.env.SMTP_HOST);
+console.log("SMTP_PORT:", process.env.SMTP_PORT);
+console.log("BACKEND_URL:", process.env.BACKEND_URL);
+
 const createTransporter = (user: UserType) => {
   if (!user.email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(user.email)) {
     throw new Error("Invalid or missing user email address");
