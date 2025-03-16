@@ -10,6 +10,6 @@
     "outDir": "./dist",
     "baseUrl": "./src"
   },
-  "include": ["src/**/*.ts", "app.ts"],
+  "include": ["src/**/*.ts", "app.ts", "cloudinary.ts"],
   "exclude": ["node_modules"]
 }

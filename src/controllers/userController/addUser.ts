@@ -4,6 +4,7 @@ import { createUser } from "../../services/usersService.js";
 import { UserType } from "../../types/userType";
 import bcrypt from "bcryptjs";
 import { nanoid } from "nanoid";
+import { v2 as cloudinary } from "cloudinary";
 
 export const addUser: RequestHandler<{}, any, UserType> = async (
   req,
@@ -11,8 +12,6 @@ export const addUser: RequestHandler<{}, any, UserType> = async (
 ): Promise<any> => {
   const { name, age, email, password, country } = req.body;
   const imgLink = req.file ? req.file.path : null;
-
-  console.log("Plik:", req.file);
 
   const start = performance.now();
   const hashedPassword = bcrypt.hashSync(password, 11);
@@ -33,7 +32,7 @@ export const addUser: RequestHandler<{}, any, UserType> = async (
     password: hashedPassword,
     verificationToken,
     country,
-    imgLink: `${imgLink}.jpg`,
+    imgLink,
   };
   try {
     const exist = await User.findOne({ email: newUser.email });
@@ -43,6 +42,8 @@ export const addUser: RequestHandler<{}, any, UserType> = async (
       return;
     }
     const user = await createUser(newUser);
+
+    await cloudinary.uploader.upload(imgLink);
 
     res.status(201).json({
       message: "User added correctly",

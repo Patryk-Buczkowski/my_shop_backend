@@ -12,7 +12,20 @@ import { validateNewPassword } from "validators/validateNewPassword";
 import { getUser } from "controllers/userController/getUser";
 import multer from "multer";
 
-const upload = multer({ dest: "uploads/" });
+import { v2 as cloudinary } from "cloudinary";
+import { CloudinaryStorage } from "multer-storage-cloudinary";
+
+const storage = new CloudinaryStorage({
+  cloudinary,
+  params: async (req, file) => ({
+    folder: "my_shop",
+    format: "webp",
+    public_id: `${Date.now()}-${file.originalname}`,
+  }),
+});
+
+const upload = multer({ storage });
+
 const userRouter = express.Router();
 
 userRouter.post("/login", loginUser);
