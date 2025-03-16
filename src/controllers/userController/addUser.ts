@@ -41,9 +41,27 @@ export const addUser: RequestHandler<{}, any, UserType> = async (
       res.status(400).json("email exist in data base");
       return;
     }
+
+    const results = await cloudinary.uploader.upload(imgLink);
+
+    const url = cloudinary.url(results.public_id, {
+      transformation: [
+        {
+          quality: "auto",
+          fetch_format: "auto",
+        },
+
+        {
+          width: 100,
+        },
+      ],
+    });
+
+    newUser.imgLink = url;
+
     const user = await createUser(newUser);
 
-    await cloudinary.uploader.upload(imgLink);
+    console.log("url", url);
 
     res.status(201).json({
       message: "User added correctly",
