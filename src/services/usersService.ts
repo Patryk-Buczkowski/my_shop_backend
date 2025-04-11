@@ -31,7 +31,6 @@ export const getUserByToken = async (verificationToken: string) => {
       return null;
     }
     user.verificationToken = "null";
-    user.tokenCreatedAt = null;
     user.tokenExpiration = new Date(
       Date.now() + 100 * 365 * 24 * 60 * 60 * 1000,
     );
