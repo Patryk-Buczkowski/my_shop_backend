@@ -64,13 +64,8 @@ const userSchema = new schema<UserType>(
 
     tokenExpiration: {
       type: Date,
-      default: () => Date.now() + 24 * 60 * 60 * 1000,
-    },
-
-    tokenCreatedAt: {
-      type: Date,
-      default: Date.now,
-      expires: 86400,
+      default: Date.now() + 24 * 60 * 60 * 1000,
+      required: false,
     },
   },
   { timestamps: true },
@@ -81,6 +76,11 @@ userSchema.virtual("productsBoughtList", {
   localField: "productsBought.product",
   foreignField: "_id",
 });
+
+userSchema.methods.setTokenExpirationTo100Years = function () {
+  this.tokenExpiration = new Date(Date.now() + 100 * 365 * 24 * 60 * 60 * 1000);
+  return this.save();
+};
 
 const User = mongoose.model("user", userSchema);
 

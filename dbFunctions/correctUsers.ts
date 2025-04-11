@@ -12,14 +12,14 @@ mongoose
     process.exit(1);
   });
 
-const correctUsers = async () => {
+export const correctUsers = async () => {
   const start = performance.now();
 
   try {
     const users = await User.find();
 
     for (const user of users) {
-      user.imgLink = "";
+      user.tokenExpiration = null;
 
       await user.save();
     }

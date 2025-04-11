@@ -14,7 +14,7 @@ export const updateProduct: RequestHandler<{ productId: number }, {}> = async (
     if (!updatedProduct) {
       res.status(404).json("product do not found");
     } else {
-      res.json("product updated");
+      res.json({ message: "product updated", updatedProduct });
     }
   } catch (error) {
     res.status(500).json({ message: "Internal server error", error });

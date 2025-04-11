@@ -34,6 +34,7 @@ export const getUser: RequestHandler<{ userId: string }> = async (req, res) => {
       name: user.name,
       age: user.age,
       country: user.country,
+      imgLink: user.imgLink,
       role: user.role,
       productsBought: await convertIdtoName(user.productsBought),
       //   productsBoughtList: user.productsBoughtList,
