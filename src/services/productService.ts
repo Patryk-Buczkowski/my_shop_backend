@@ -54,7 +54,15 @@ export const updateProductData = async (
   try {
     const updatedProduct = await Product.findByIdAndUpdate(productId, updates, {
       new: true,
-    });
+    })
+      .populate({
+        path: "commentsList",
+        populate: {
+          path: "userId",
+          select: "name",
+        },
+      })
+      .exec();
 
     if (!updatedProduct) {
       return null;
