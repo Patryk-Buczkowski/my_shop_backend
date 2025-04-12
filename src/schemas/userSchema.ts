@@ -64,7 +64,7 @@ const userSchema = new schema<UserType>(
 
     tokenExpiration: {
       type: Date,
-      default: Date.now() + 24 * 60 * 60 * 1000,
+      default: new Date(Date.now() + 24 * 60 * 60 * 1000),
       required: false,
     },
   },
