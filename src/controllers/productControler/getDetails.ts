@@ -9,7 +9,13 @@ export const getDetails: RequestHandler<{ productId: string }> = async (
     const { productId } = req.params;
     console.log("productId", productId);
     const product = await Product.findById(productId)
-      .populate("comments")
+      .populate({
+        path: "commentsList",
+        populate: {
+          path: "userId",
+          select: "name",
+        },
+      })
       .exec();
 
     if (!product) {
@@ -19,7 +25,8 @@ export const getDetails: RequestHandler<{ productId: string }> = async (
     res.json({
       id: product._id,
       title: product.title,
-      comments: product.commentsList,
+      comments: product.comments,
+      commentsList: product.commentsList,
       price: product.price,
       description: product.description,
       quantity: product.quantityAvailable,
